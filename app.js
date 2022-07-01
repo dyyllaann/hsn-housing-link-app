@@ -7,17 +7,13 @@ var logger = require('morgan');
 // var helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
-var accountRouter = require('./routes/account');
-var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
-
-// app.use(favicon(path.join(__dirname, "public", "favicon.ico"))); 
 
 var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB =
-	"mongodb+srv://admin:adminPass@cluster0.ydfag.mongodb.net/?retryWrites=true&w=majority"; 
+  "mongodb+srv://admin:hsn-admin@cluster0.qnb2t.mongodb.net/housing_link?retryWrites=true&w=majority";
   
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
@@ -36,8 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/account', accountRouter);
-app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

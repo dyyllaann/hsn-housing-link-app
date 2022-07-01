@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div(class='applicant-grid')
+    each applicant in applicants_list
+      div(class='applicant-card')
+        h1 #{applicant.name}
+        span(class='applicant-card__title') Tenants: 
+          p #{applicant.tenants} 
+          span(class='applicant-card__title') Pets:  
+          p #{applicant.pets_string} 
+          span(class='applicant-card__title') Vehicles: 
+          p #{applicant.vehicles} 
+        span(class='applicant-card__title') Seeking: 
+          p= applicant.seeking.join(", ")
+        span(class='applicant-card__title') Location: 
+          p= applicant.preferred_location.join(", ")
+        span(class='applicant-card__title') Bedrooms: 
+          p #{applicant.bedrooms.join(", ")}
+        span(class='applicant-card__title') Price range: 
+          p #{applicant.price_range}
+        span(class='applicant-card__title') Interests: 
+          p #{applicant.interests}
+        span(class='applicant-card__title') Story: 
+          p #{applicant.story}
+    else
+      div
+        p No applicants found!
