@@ -56,17 +56,5 @@ html(lang='en')
         block content
         if message
           p #{message}
-    //- div(class='footer')
-      div
-        br
-        h1 Attention, please!
-        br
-        p This website is a CLONE of Sub Pop's online store. This CLONE is not now, nor will ever be, set up to receive any payment or collect any data. 
-          | All materials are property of Sub Pop and any copyright infringement is unintended! This website was created solely as a practice project. 
-        p This CLONE was written from scratch using Express, Node, and MongoDB with Mongoose. 
-        p In addition to the features of the original Sub Pop Mega Mart website, this CLONE features a fully functional inventory management system that is revealed when a user logs in as an admin. 
-          | The inventory management system allows a user to create and update item listings. However, item deletion is disabled.
-        p
-          strong Did I mention this is NOT the REAL Sub Pop website? 
-        p To visit and support the REAL Sub Pop, visit 
-          a(href="https://megamart.subpop.com/") https://megamart.subpop.com.
+    div(class='login')
+      a(href="/login") Admin

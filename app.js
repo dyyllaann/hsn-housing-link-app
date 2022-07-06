@@ -6,6 +6,10 @@ var logger = require('morgan');
 // var compression = require('compression');
 // var helmet = require('helmet');
 
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
 var indexRouter = require('./routes/index');
 
 var app = express();
@@ -29,6 +33,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(compression());
 // app.use(helmet());
+// Auth dependencies
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

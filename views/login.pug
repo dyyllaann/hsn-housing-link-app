@@ -2,15 +2,14 @@ extends layout
 
 block content
   div(class='container-xl')
-    div(class='row')
-      div(class='col')
-        h1(class='section-title') Login
-        form(class='login__form' action='' method="get")
-          input(class='login__input' type="email" name="email" id="loginEmail" placeholder="Email" autocorrect="off" autocapitalize="off" autofocus)
-          input(class='login__input' type="password" name="password" id="loginPassword" placeholder="Password" autocorrect="off" autocapitalize="off")
-          p
-            a(href="/account/info") Forgot your password?
-          p
-            input(type="submit" class="btn" value="Sign In")
-      div(class='col') 
+    h1(class='login__form__title') Admin Login
+    form(class='login__form' action='' method="get")
+      label(for="email") Email
+      input(class='login__input' type="email" name="email" id="loginEmail" placeholder="Email" autocorrect="off" autocapitalize="off" autofocus)
+      label(for="password") Password
+      input(class='login__input' type="password" name="password" id="loginPassword" placeholder="Password" autocorrect="off" autocapitalize="off")
+      p
+        //- a(href="/account/info") Forgot your password?
+      p
+        input(type="submit" class="btn" value="Sign In")
 

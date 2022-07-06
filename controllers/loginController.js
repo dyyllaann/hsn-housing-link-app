@@ -10,13 +10,6 @@ exports.login = function (req, res) {
 	})
 };
 
-// exports.login_post = function (req, res) {
-// 	var titleTest = "Testing";
-// 	res.render("login", {
-// 		title: titleTest
-// 	})
-// }
-
 exports.create_account = function (req, res) {
 	res.render("layout", {
 		title: "Create Account",

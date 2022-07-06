@@ -1,6 +1,5 @@
-var mongoose = require("mongoose");
 const {DateTime} = require("luxon");
-
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ApplicantSchema = new Schema({
