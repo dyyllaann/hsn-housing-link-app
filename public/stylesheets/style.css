@@ -36,6 +36,31 @@ h1 {
   max-width: none;
 }
 
+.admin-dashboard {
+  font-size: 0.8em;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.admin-dashboard table, th, td {
+  overflow: scroll;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.admin-dashboard tr:nth-child(even) {
+  background-color: #f2fafa;
+}
+
+.admin-dashboard__approve-btn {
+  color: #218021
+}
+
+.admin-dashboard__remove-btn {
+  color: #961a1a
+}
+
 .applicant-grid {
   height: 100%;
   width: 100%;

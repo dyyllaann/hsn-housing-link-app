@@ -16,6 +16,7 @@ var ApplicantSchema = new Schema({
 	occupation_location: { type: String },
 	story: { type: String },
 	interests: { type: String },
+	status: { type: String },
 });
 
 ApplicantSchema.virtual("price_range").get(function () {

@@ -28,6 +28,7 @@ const User = mongoose.model(
 
 /* Controllers */
 const applicant_controller = require('./controllers/applicantController');
+const dashboard_controller = require('./controllers/dashboardController');
 
 /* Routers */
 // var indexRouter = require('./routes/index');
@@ -93,9 +94,22 @@ app.use(express.urlencoded({ extended: false }));
 // GET index page.
 app.get("/", applicant_controller.applicants_list);
 
+// GET admin page.
+app.get("/admin", dashboard_controller.applicants_list)
+
 // GET login page.
 app.get("/login", (req, res) => {
 	res.render("login");
+});
+
+// GET logout page.
+app.get("/logout", (req, res) => {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+		res.redirect("/");
+	});
 });
 
 // POST login page.

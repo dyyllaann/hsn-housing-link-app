@@ -18,7 +18,11 @@ html(lang='en')
         if message
           p #{message}
     div(class='login')
-      a(href="/login") Admin Access
-      br
       if user
+        a(href="/admin") Admin Dashboard
+        br
         span Logged in as #{user.username}
+        br
+        a(href="/logout") Logout
+      else 
+        a(href="/login") Login

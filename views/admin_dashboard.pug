@@ -1,0 +1,70 @@
+extends layout
+
+block content
+  h1 Admin Dashboard
+  br
+  br
+  if user
+    div(class='admin-dashboard')
+      h5 Pending Listings
+      table 
+        tr 
+          th Status
+          th Name
+          th Tenants 
+          th Pets
+          th Vehicles
+          th Seeking
+          th Location
+          th Bedrooms
+          th Price Range
+          th Interests
+          th Story
+        each applicant in applicants_list
+          if applicant.status == 'pending'
+            tr 
+              td
+                a(href='#' class='admin-dashboard__approve-btn') Approve
+              td #{applicant.name}
+              td #{applicant.tenants}   
+              td #{applicant.pets}
+              td #{applicant.vehicles}
+              td #{applicant.seeking.join(", ")}
+              td #{applicant.preferred_location.join(", ")}
+              td #{applicant.bedrooms.join(", ")}
+              td #{applicant.price_range}
+              td #{applicant.interests}
+              td #{applicant.story}
+      br
+      br
+      h5 Approved Listings
+      table 
+        tr 
+          th Status
+          th Name
+          th Tenants 
+          th Pets
+          th Vehicles
+          th Seeking
+          th Location
+          th Bedrooms
+          th Price Range
+          th Interests
+          th Story
+        each applicant in applicants_list
+          if applicant.status == 'approved'
+            tr 
+              td 
+                a(href='#' class='admin-dashboard__remove-btn') Remove
+              td #{applicant.name}
+              td #{applicant.tenants}   
+              td #{applicant.pets}
+              td #{applicant.vehicles}
+              td #{applicant.seeking.join(", ")}
+              td #{applicant.preferred_location.join(", ")}
+              td #{applicant.bedrooms.join(", ")}
+              td #{applicant.price_range}
+              td #{applicant.interests}
+              td #{applicant.story}
+  else
+    span You must login to access this page.
