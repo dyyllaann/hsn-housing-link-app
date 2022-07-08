@@ -1,7 +1,8 @@
 doctype html
 html(lang='en')
   head
-    title= title + ' – Sub Pop Mega Mart'
+    //- title= title + ' – Sub Pop Mega Mart'
+    title Housing Link
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous")
@@ -11,50 +12,13 @@ html(lang='en')
     <link rel="stylesheet" href="https://use.typekit.net/zud4opj.css">
     link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200")  
   body
-    //- div(class='header-bar')
-      ul(class='header-bar__module')
-        li 
-          a(href='/account/login') Log in
-        li 
-          a or 
-        li 
-          a(href='/account/create-account') Create account
-    //- div(class='header')
-      div(class='header-logo')
-        a(href="/")
-          img(src="/images/MegaMartHeader_2020_540x.webp", alt="Sub Pop MegaMart Logo", id="logo")
-      div(class='header-nav')
-        ul(class='navbar')
-          li
-            ul(class='navbar__dropdown')
-              li
-                a(href='/catalog/items' class='navbar__dropbtn') Music
-                li(class='navbar__dropdown-content')
-                  a(href='/catalog/pre-orders') Pre Orders
-                  a(href='/catalog/new-releases') New Releases
-                  a(href='/catalog/sub-pop-releases') Sub Pop
-                  a(href='/catalog/hardly-art') Hardly Art
-                  a(href='/catalog/other-labels') Other Labels
-                  a(href='/catalog/comedy') Or Perhaps Comedy          
-          li  
-            ul(class='navbar__dropdown')
-              li 
-                a(href='/catalog/artists' class='navbar__dropbtn') Artists
-                li(class='navbar__dropdown-content')
-                  a(href="/catalog/featured-artists") Featured Artists
-                  a(href='/catalog/artists') Artists A-Z
-          li
-            a(href='/catalog/apparel') Apparel
-          li
-            a(href='/catalog/goods') Goods
-          li
-            a(href='/catalog/clearance') Clearance
-          li
-            a(href='/catalog/gift-cards') Gift Cards
     div(class='container-fluid')
       div(class='row')
         block content
         if message
           p #{message}
     div(class='login')
-      a(href="/login") Admin
+      a(href="/login") Admin Access
+      br
+      if user
+        span Logged in as #{user.username}
