@@ -26,3 +26,40 @@ block content
     else
       div
         p No applicants found!
+  div(class='applicant-form')
+    h1(class='listing__form__title') Post a Listing
+    form(class='listing__form' action='/submit-listing' method="POST")
+      label(for="name") Name
+      input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="off")
+      
+      label(for="tenants") Tenants
+      input(class='listing__input' type="text" name="tenants" id="tenants" placeholder="Tenants" autocorrect="off" autocapitalize="off")
+      
+      label(for="pets") Pets
+      input(class='listing__input' type="text" name="pets" id="pets" placeholder="Pets" autocorrect="off" autocapitalize="off")
+      
+      label(for="vehicles") Vehicles
+      input(class='listing__input' type="text" name="vehicles" id="vehicles" placeholder="Vehicles" autocorrect="off" autocapitalize="off")
+      
+      label(for="seeking") Seeking
+      input(class='listing__input' type="text" name="seeking" id="seeking" placeholder="Seeking" autocorrect="off" autocapitalize="off")
+      
+      label(for="location") Location
+      input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
+      
+      label(for="bedrooms") Bedrooms
+      input(class='listing__input' type="text" name="bedrooms" id="bedrooms" placeholder="Bedrooms" autocorrect="off" autocapitalize="off")
+      
+      label(for="price-range") Price Range
+      input(class='listing__input' type="text" name="price-range" id="price-range" placeholder="Price Range" autocorrect="off" autocapitalize="off")
+      
+      label(for="interests") Interests
+      input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="off" autocapitalize="off")
+      
+      label(for="story") Story
+      input(class='listing__input' type="text" name="story" id="story" placeholder="Story" autocorrect="off" autocapitalize="off")
+      
+      p
+        //- a(href="/account/info") Forgot your password?
+      p
+        input(type="submit" class="btn" value="Submit")

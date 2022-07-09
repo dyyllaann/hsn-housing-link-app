@@ -110,6 +110,14 @@ h1 {
   font-weight: 500;
 }
 
+.listing__form {
+  display: inline-block;
+}
+
+.listing__input {
+  margin: 0 20px 0 5px;
+}
+
 .login {
   margin-top: 20px;
   text-align: center;
