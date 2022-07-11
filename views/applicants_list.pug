@@ -1,65 +1,130 @@
 extends layout
 
 block content
-  div(class='applicant-grid')
-    each applicant in applicants_list
-      div(class='applicant-card')
-        h1 #{applicant.name}
-        span(class='applicant-card__title') Tenants: 
-          p #{applicant.tenants} 
-          span(class='applicant-card__title') Pets:  
-          p #{applicant.pets_string} 
-          span(class='applicant-card__title') Vehicles: 
-          p #{applicant.vehicles} 
-        span(class='applicant-card__title') Seeking: 
-          p= applicant.seeking.join(", ")
-        span(class='applicant-card__title') Location: 
-          p= applicant.preferred_location.join(", ")
-        span(class='applicant-card__title') Bedrooms: 
-          p #{applicant.bedrooms.join(", ")}
-        span(class='applicant-card__title') Price range: 
-          p #{applicant.price_range}
-        span(class='applicant-card__title') Interests: 
-          p #{applicant.interests}
-        span(class='applicant-card__title') Story: 
-          p #{applicant.story}
-    else
-      div
-        p No applicants found!
-  div(class='applicant-form')
-    h1(class='listing__form__title') Post a Listing
-    form(class='listing__form' action='/submit-listing' method="POST")
-      label(for="name") Name
-      input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="off")
-      
-      label(for="tenants") Tenants
-      input(class='listing__input' type="text" name="tenants" id="tenants" placeholder="Tenants" autocorrect="off" autocapitalize="off")
-      
-      label(for="pets") Pets
-      input(class='listing__input' type="text" name="pets" id="pets" placeholder="Pets" autocorrect="off" autocapitalize="off")
-      
-      label(for="vehicles") Vehicles
-      input(class='listing__input' type="text" name="vehicles" id="vehicles" placeholder="Vehicles" autocorrect="off" autocapitalize="off")
-      
-      label(for="seeking") Seeking
-      input(class='listing__input' type="text" name="seeking" id="seeking" placeholder="Seeking" autocorrect="off" autocapitalize="off")
-      
-      label(for="location") Location
-      input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
-      
-      label(for="bedrooms") Bedrooms
-      input(class='listing__input' type="text" name="bedrooms" id="bedrooms" placeholder="Bedrooms" autocorrect="off" autocapitalize="off")
-      
-      label(for="price-range") Price Range
-      input(class='listing__input' type="text" name="price-range" id="price-range" placeholder="Price Range" autocorrect="off" autocapitalize="off")
-      
-      label(for="interests") Interests
-      input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="off" autocapitalize="off")
-      
-      label(for="story") Story
-      input(class='listing__input' type="text" name="story" id="story" placeholder="Story" autocorrect="off" autocapitalize="off")
-      
-      p
-        //- a(href="/account/info") Forgot your password?
-      p
-        input(type="submit" class="btn" value="Submit")
+  div(class='row')
+    div(class='applicant-grid')
+      each applicant in applicants_list
+        div(class='applicant-card')
+          h1 #{applicant.name}
+          span(class='applicant-card__title') Tenants: 
+            p #{applicant.tenants} 
+            span(class='applicant-card__title') Pets:  
+            p #{applicant.pets_string} 
+            span(class='applicant-card__title') Vehicles: 
+            p #{applicant.vehicles} 
+          span(class='applicant-card__title') Seeking: 
+            p= applicant.seeking.join(", ")
+          span(class='applicant-card__title') Location: 
+            p= applicant.preferred_location.join(", ")
+          span(class='applicant-card__title') Bedrooms: 
+            p #{applicant.bedrooms.join(", ")}
+          span(class='applicant-card__title') Price range: 
+            p #{applicant.price_range}
+          span(class='applicant-card__title') Interests: 
+            p #{applicant.interests}
+          span(class='applicant-card__title') Story: 
+            p #{applicant.story}
+      else
+        div
+          p No applicants found!
+  div(class='row')      
+    div(class='applicant-form')
+      h1(class='listing__form__title') Post a Listing
+
+      form(class='listing__form' action='/submit-listing' method="POST")
+        p Our new Housing Link project is an effort by HSN to connect home seekers with home providers. Folks seeking housing will be able to post a simple description of what they’re looking for, and folks with housing space to share will be able to review the Link to find a community member who could live in their space. Housing Solutions Network does not screen either the home seekers or home providers, and we do NOT recommend sharing sensitive, or information about legally protected classes via the Housing Link, or prior to meeting with each other. 
+        p Housing Link profiles will be prioritized by the following criteria:
+        p - People who work for employers or small business owners who serve Jefferson County
+        p - People who are seeking rentals under $2,000/mo and purchases under $300,000
+        p If your profile does not meet this criteria, it is subject to review and may not be posted. 
+        p ALL postings will have an expiration of 60 days. Home seekers can resubmit their forms after that period. 
+        p Home seekers interested in posting can fill out this form to start, and will be contacted by an HSN representative.
+        p Housing Solutions Network cannot be responsible or liable for the conduct of home seekers (renters) or home providers (landlords). 
+        p Thank you for being part of our housing network!
+
+        div
+          label(for="email") Email
+          input(class='listing__input' type="text" name="email" id="email" placeholder="Your email" autocorrect="off" autocapitalize="off")
+        
+        div
+          label(for="name") Name
+          input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="off")
+        
+        div(class='listing__form__section')
+          div
+            label(for="tenants") Tenants
+            input(class='listing__input' type="text" name="tenants" id="tenants" placeholder="Tenants" autocorrect="off" autocapitalize="off")
+          
+          div
+            label(for="bedrooms") Bedrooms
+            input(class='listing__input' type="text" name="bedrooms" id="bedrooms" placeholder="Bedrooms" autocorrect="off" autocapitalize="off")
+        
+          div
+            label(for="pets") Pets
+            input(class='listing__input' type="text" name="pets" id="pets" placeholder="Pets" autocorrect="off" autocapitalize="off")
+          
+          div
+            label(for="vehicles") Vehicles
+            input(class='listing__input' type="text" name="vehicles" id="vehicles" placeholder="Vehicles" autocorrect="off" autocapitalize="off")
+        
+        div
+          label(for="seeking") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
+          input(class='listing__input' type="radio" name="seeking" id="seeking1" value="Jefferson County")
+          label(for="seeking1") Yes, my employer or small business serves Jefferson County
+          br
+          input(class='listing__input' type="radio" name="seeking" id="seeking2" value="null") 
+          label(for="seeking2") No
+        
+        //- div
+        //-   label(for="location") Location
+        //-   input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
+        
+        div
+          label(for="location") Preferred Living Location
+          br
+          //- input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
+          div
+            input(class='listing__input' name="location" id="port-townsend" type="checkbox") 
+            label(for="port-townsend") Port Townsend
+          div
+            input(class='listing__input' name="location" id="port-hadlock" type="checkbox") 
+            label(for="port-hadlock") Port Hadlock
+          div
+            input(class='listing__input' name="location" id="chimacum" type="checkbox") 
+            label(for="chimacum") Chimacum
+          div
+            input(class='listing__input' name="location" id="port-ludlow" type="checkbox") 
+            label(for="port-ludlow") Port Ludlow
+          div
+            input(class='listing__input' name="location" id="quilcene" type="checkbox") 
+            label(for="quilcene") Quilcene
+          div
+            input(class='listing__input' name="location" id="anywhere" type="checkbox") 
+            label(for="anywhere") Anywhere in Jefferson County
+
+        div(class='listing__form__section')
+          label(for="price-range") Price Range (either a range for monthly rent or purchase price range)
+
+          br
+          div(style="min-width: 49.5%; margin-right: 1%")
+            input(class='listing__input' type="number" name="price-range" id="price-range__min" placeholder="Minimum")
+          
+          div(style="min-width: 49.5%; margin-right: 0")
+            input(class='listing__input' type="number" name="price-range" id="price-range__max" placeholder="Maximum")
+            
+        div
+          label(for="interests") Interests
+          input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="off" autocapitalize="off")
+        
+        div
+          label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 100 characters here. We will shorten the information if you go over to what we believe is pertinent information to fit within the platform. Make it brief and to the point!
+          textarea(class='listing__input' rows="4" maxlength="300" type="text" name="story" id="story" placeholder="Your answer" autocorrect="on" autocapitalize="on")
+        
+        div
+          label(for="disclaimer") Housing Solutions Network cannot be held responsible or liable for the conduct of home seekers (renters) or home providers (landlords). Is this understood and acceptable?
+          br
+          input(class='listing__input' type="checkbox" name="disclaimer" id="disclaimer" required)
+          label(for="disclaimer") I understand and accept.
+        
+        p
+          input(type="submit" class="listing__input submit btn" value="Submit")

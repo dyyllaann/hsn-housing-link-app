@@ -10,6 +10,18 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* a {
   text-decoration: none !important;
 }
@@ -110,12 +122,66 @@ h1 {
   font-weight: 500;
 }
 
+div.applicant-form {
+  display: block;
+  width: 100vw;
+}
+
 .listing__form {
+  display: inline-block;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  text-align: left;
+}
+
+.listing__form label {
+  line-height: 1;
+}
+
+.listing__form > div {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.listing__form__section {
+  width: 100%;
   display: inline-block;
 }
 
+.listing__form__section > div {
+  display: inline-block;
+  max-width: 24%;
+  margin-right: 1.25%;
+}
+
+.listing__form__section > div:last-child {
+  margin-right: 0;
+}
+
 .listing__input {
-  margin: 0 20px 0 5px;
+  margin-bottom: 10px;
+  /* width: 100%; */
+  /* display: inline-block; */
+}
+
+.listing__input[type=text], .listing__input[type=number] {
+  width: 100%;
+}
+
+.listing__input[type=radio], .listing__input[type=checkbox] {
+  margin: 0 10px;
+}
+
+.listing__input.submit {
+  background-color: #add8e6;
+}
+
+#story {
+  height: auto;
 }
 
 .login {
@@ -142,4 +208,8 @@ h1 {
 
 .login__form .btn:hover {
   background-color: #ddd;
+}
+
+.row {
+  margin-bottom: 50px;
 }
