@@ -4,26 +4,27 @@ block content
   div(class='row')
     div(class='applicant-grid')
       each applicant in applicants_list
-        div(class='applicant-card')
-          h1 #{applicant.name}
-          span(class='applicant-card__title') Tenants: 
-            p #{applicant.tenants} 
-            span(class='applicant-card__title') Pets:  
-            p #{applicant.pets_string} 
-            span(class='applicant-card__title') Vehicles: 
-            p #{applicant.vehicles} 
-          span(class='applicant-card__title') Seeking: 
-            p= applicant.seeking.join(", ")
-          span(class='applicant-card__title') Location: 
-            p= applicant.preferred_location.join(", ")
-          span(class='applicant-card__title') Bedrooms: 
-            p #{applicant.bedrooms.join(", ")}
-          span(class='applicant-card__title') Price range: 
-            p #{applicant.price_range}
-          span(class='applicant-card__title') Interests: 
-            p #{applicant.interests}
-          span(class='applicant-card__title') Story: 
-            p #{applicant.story}
+        if applicant.status == 'approved'
+          div(class='applicant-card')
+            h1 #{applicant.name}
+            span(class='applicant-card__title') Tenants: 
+              p #{applicant.tenants} 
+              span(class='applicant-card__title') Pets:  
+              p #{applicant.pets_string} 
+              span(class='applicant-card__title') Vehicles: 
+              p #{applicant.vehicles} 
+            span(class='applicant-card__title') Seeking: 
+              p= applicant.seeking.join(", ")
+            span(class='applicant-card__title') Location: 
+              p= applicant.preferred_location.join(", ")
+            span(class='applicant-card__title') Bedrooms: 
+              p #{applicant.bedrooms.join(", ")}
+            span(class='applicant-card__title') Price range: 
+              p #{applicant.price_range}
+            span(class='applicant-card__title') Interests: 
+              p #{applicant.interests}
+            span(class='applicant-card__title') Story: 
+              p #{applicant.story}
       else
         div
           p No applicants found!
@@ -68,38 +69,52 @@ block content
             input(class='listing__input' type="text" name="vehicles" id="vehicles" placeholder="Vehicles" autocorrect="off" autocapitalize="off")
         
         div
-          label(for="seeking") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
-          input(class='listing__input' type="radio" name="seeking" id="seeking1" value="Jefferson County")
-          label(for="seeking1") Yes, my employer or small business serves Jefferson County
+          label(for="occupationLocation") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
+          input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation1" value="Jefferson County")
+          label(for="occupationLocation") Yes, my employer or small business serves Jefferson County
           br
-          input(class='listing__input' type="radio" name="seeking" id="seeking2" value="null") 
-          label(for="seeking2") No
-        
-        //- div
-        //-   label(for="location") Location
-        //-   input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
+          input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation2" value=null) 
+          label(for="occupationLocation") No
+
+        div
+          label(for="seeking") What best describes what you're looking for? A private rental, home-share, temporary residence, or a place to buy?
+          br
+          div
+            input(class='listing__input' name="seeking" id="rental" value="Rental" type="checkbox") 
+            label(for="rental") Rental
+          div
+            input(class='listing__input' name="seeking" id="homeShare" value="Home-Share" type="checkbox") 
+            label(for="homeShare") Home-Share
+          div
+            input(class='listing__input' name="seeking" id="temporary" value="Temporary Residence (1-3 months)" type="checkbox") 
+            label(for="temporary") Temporary Residence (1-3 months)            
+          div
+            input(class='listing__input' name="seeking" id="landLease" value="Land lease for RV or tiny house on wheels" type="checkbox") 
+            label(for="landLease") Land lease for RV or tiny house on wheels
+          div
+            input(class='listing__input' name="seeking" id="purchase" value="Purchase" type="checkbox") 
+            label(for="purchase") Purchase
         
         div
           label(for="location") Preferred Living Location
           br
-          //- input(class='listing__input' type="text" name="location" id="location" placeholder="Location" autocorrect="off" autocapitalize="off")
           div
-            input(class='listing__input' name="location" id="port-townsend" type="checkbox") 
+            input(class='listing__input' name="location" id="port-townsend" value="Port Townsend" type="checkbox") 
             label(for="port-townsend") Port Townsend
           div
-            input(class='listing__input' name="location" id="port-hadlock" type="checkbox") 
+            input(class='listing__input' name="location" id="port-hadlock" value="Port Hadlock" type="checkbox") 
             label(for="port-hadlock") Port Hadlock
           div
-            input(class='listing__input' name="location" id="chimacum" type="checkbox") 
+            input(class='listing__input' name="location" id="chimacum" value="Chimacum" type="checkbox") 
             label(for="chimacum") Chimacum
           div
-            input(class='listing__input' name="location" id="port-ludlow" type="checkbox") 
+            input(class='listing__input' name="location" id="port-ludlow" value="Port Ludlow" type="checkbox") 
             label(for="port-ludlow") Port Ludlow
           div
-            input(class='listing__input' name="location" id="quilcene" type="checkbox") 
+            input(class='listing__input' name="location" id="quilcene" value="Quilcene" type="checkbox") 
             label(for="quilcene") Quilcene
           div
-            input(class='listing__input' name="location" id="anywhere" type="checkbox") 
+            input(class='listing__input' name="location" id="anywhere" value="Anywhere in Jefferson County" type="checkbox") 
             label(for="anywhere") Anywhere in Jefferson County
 
         div(class='listing__form__section')

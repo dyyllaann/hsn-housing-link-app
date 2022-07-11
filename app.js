@@ -25,6 +25,26 @@ const User = mongoose.model(
 		password: { type: String, required: true },
 	})
 );
+// const Applicant = mongoose.model(
+// 	"Applicant",
+// 	new Schema({
+// 		name: { type: String },
+// 		date_added: { type: Date },
+// 		tenants: { type: String },
+// 		seeking: { type: Array },
+// 		preferred_location: { type: Array },
+// 		bedrooms: { type: Array },
+// 		price: { type: Array },
+// 		pets: { type: Array },
+// 		pets_string: { type: String },
+// 		vehicles: { type: String },
+// 		occupation_location: { type: String },
+// 		story: { type: String },
+// 		interests: { type: String },
+// 		status: { type: String },
+// 	})
+// );
+const Applicant = require('./models/applicant');
 
 /* Controllers */
 const applicant_controller = require('./controllers/applicantController');
@@ -120,5 +140,30 @@ app.post(
 		failureRedirect: "/login",
 	})
 );
+
+// POST submit-listing page.
+app.post("/submit-listing", (req, res, next) => {
+	const applicant = new Applicant({
+		name: req.body.name,
+		date_added: new Date,
+		tenants: req.body.tenants,
+		// seeking: ,
+		preferred_location: req.body.location,
+		bedrooms: req.body.tenants,
+		price: {min: req.body.min, max: req.body.max},
+		// pets: { type: Array },
+		pets_string: req.body.pets,
+		vehicles: req.body.vehicles,
+		occupation_location: req.body.occupationLocation,
+		story: req.body.story,
+		interests: req.body.interests,
+		status: "pending",
+	}).save((err) => {
+		if (err) {
+			return next(err);
+		}
+		res.redirect("/");
+	});
+});
 
 module.exports = app;
