@@ -170,16 +170,44 @@ app.post("/submit-listing", (req, res, next) => {
 app.post("/admin", (req, res, next) => {
 	Applicant.findByIdAndUpdate(req.body.approve, { status: 'approved' },
 		function (err, docs) {
-			if (err){
+			if (err) {
         console.log(err)
 			}
-			else{
+			else {
         console.log("Approved User : ", docs);
 			}
-	}),
-	// console.log(req.body.approve)
+			res.redirect("/admin")
+	});
+});
 
-	res.redirect("/admin")
-})
+app.post("/archive", (req, res, next) => {
+	Applicant.findByIdAndUpdate(
+		req.body.archive,
+		{ status: "archived" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Archived User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	);
+});
+
+app.post("/restore", (req, res, next) => {
+	Applicant.findByIdAndUpdate(
+		req.body.restore,
+		{ status: "restore" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Restored User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	);
+});
 
 module.exports = app;

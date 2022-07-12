@@ -10,6 +10,7 @@ block content
   if user
     div(class='admin-dashboard')
       h5 Pending Listings
+      if applicants_list
       table 
         tr 
           th Status
@@ -59,7 +60,41 @@ block content
           if applicant.status == 'approved'
             tr 
               td 
-                a(href='#' class='admin-dashboard__remove-btn' id=applicant._id) Remove
+                form(action='/archive' method='POST')
+                  button(name="archive" type="submit" value=applicant._id) Archive
+              td #{applicant.name}
+              td #{applicant.tenants}   
+              td #{applicant.pets}
+              td #{applicant.vehicles}
+              td #{applicant.seeking.join(", ")}
+              td #{applicant.preferred_location.join(", ")}
+              td #{applicant.bedrooms.join(", ")}
+              td #{applicant.price_range}
+              td #{applicant.interests}
+              td #{applicant.story}
+      br
+      br
+      h5 Archived Listings
+      if applicants_list
+      table 
+        tr 
+          th Status
+          th Name
+          th Tenants 
+          th Pets
+          th Vehicles
+          th Seeking
+          th Location
+          th Bedrooms
+          th Price Range
+          th Interests
+          th Story
+        each applicant in applicants_list
+          if applicant.status == 'archived'
+            tr 
+              td
+                form(action='#' method='POST')
+                  button(name="restore" type="submit" value=applicant._id) Restore
               td #{applicant.name}
               td #{applicant.tenants}   
               td #{applicant.pets}
