@@ -10,7 +10,10 @@ var ApplicantSchema = new Schema({
 	seeking: { type: Array },
 	preferred_location: { type: Array },
 	bedrooms: { type: Array },
-	price: { type: Object },
+	price: { 
+		min: { type: String },
+		max: { type: String } 
+	},
 	pets: { type: Array },
 	pets_string: { type: String },
 	vehicles: { type: String },

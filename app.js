@@ -151,7 +151,7 @@ app.post("/submit-listing", (req, res, next) => {
 		seeking: req.body.seeking,
 		preferred_location: req.body.location,
 		bedrooms: req.body.tenants,
-		price: {min: req.body.min, max: req.body.max},
+		price: {"min": req.body.priceRange_min, "max": req.body.priceRange_max},
 		// pets: { type: Array }, // Currently using string instead of array or object
 		pets_string: req.body.pets,
 		vehicles: req.body.vehicles,
@@ -166,5 +166,14 @@ app.post("/submit-listing", (req, res, next) => {
 		res.redirect("/");
 	});
 });
+
+app.post("/admin", (req, res, next) => {
+	console.log("CHECK"),
+	console.log(req.applicant.satus),
+	// const applicant = new Applicant({
+	// 	if (req.body.)
+	// })
+	res.redirect("/")
+})
 
 module.exports = app;

@@ -25,7 +25,7 @@ block content
           if applicant.status == 'pending'
             tr 
               td
-                a(href='#' class='admin-dashboard__approve-btn') Approve
+                a(href='/admin' action='/admin' method='POST' class='admin-dashboard__approve-btn' id=applicant._id) Approve
               td #{applicant.name}
               td #{applicant.tenants}   
               td #{applicant.pets}
@@ -56,7 +56,7 @@ block content
           if applicant.status == 'approved'
             tr 
               td 
-                a(href='#' class='admin-dashboard__remove-btn') Remove
+                a(href='#' class='admin-dashboard__remove-btn' id=applicant._id) Remove
               td #{applicant.name}
               td #{applicant.tenants}   
               td #{applicant.pets}
