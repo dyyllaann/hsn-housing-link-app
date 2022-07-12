@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var ApplicantSchema = new Schema({
 	name: { type: String },
+	email: { type: String },
 	date_added: { type: Date },
 	tenants: { type: String },
 	seeking: { type: Array },

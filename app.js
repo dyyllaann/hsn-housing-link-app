@@ -145,6 +145,7 @@ app.post(
 app.post("/submit-listing", (req, res, next) => {
 	const applicant = new Applicant({
 		name: req.body.name,
+		email: req.body.email,
 		date_added: new Date,
 		tenants: req.body.tenants,
 		// seeking: ,
