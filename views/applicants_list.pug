@@ -49,16 +49,20 @@ block content
         
         div
           label(for="name") Name
-          input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="off")
+          input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="on")
+        
+        div
+          label(for="occupation") Occupation
+          input(class='listing__input' type="text" name="occupation" id="occupation" placeholder="Your occupation" autocorrect="off" autocapitalize="off")
         
         div(class='listing__form__section')
           div
             label(for="tenants") Tenants
-            input(class='listing__input' type="text" name="tenants" id="tenants" placeholder="Tenants" autocorrect="off" autocapitalize="off")
+            input(class='listing__input' type="number" name="tenants" id="tenants" placeholder="Tenants")
           
           div
             label(for="bedrooms") Bedrooms
-            input(class='listing__input' type="text" name="bedrooms" id="bedrooms" placeholder="Bedrooms" autocorrect="off" autocapitalize="off")
+            input(class='listing__input' type="number" name="bedrooms" id="bedrooms" placeholder="Bedrooms")
         
           div
             label(for="pets") Pets
@@ -66,7 +70,7 @@ block content
           
           div
             label(for="vehicles") Vehicles
-            input(class='listing__input' type="text" name="vehicles" id="vehicles" placeholder="Vehicles" autocorrect="off" autocapitalize="off")
+            input(class='listing__input' type="number" name="vehicles" id="vehicles" placeholder="Vehicles")
         
         div
           label(for="occupationLocation") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
@@ -132,8 +136,8 @@ block content
           input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="off" autocapitalize="off")
         
         div
-          label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 100 characters here. We will shorten the information if you go over to what we believe is pertinent information to fit within the platform. Make it brief and to the point!
-          textarea(class='listing__input' rows="4" maxlength="300" type="text" name="story" id="story" placeholder="Your answer" autocorrect="on" autocapitalize="on")
+          label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 250 characters.
+          textarea(class='listing__input' rows="4" maxlength="250" type="text" name="story" id="story" placeholder="Your answer" autocorrect="on" autocapitalize="on")
         
         div
           label(for="disclaimer") Housing Solutions Network cannot be held responsible or liable for the conduct of home seekers (renters) or home providers (landlords). Is this understood and acceptable?
