@@ -168,12 +168,18 @@ app.post("/submit-listing", (req, res, next) => {
 });
 
 app.post("/admin", (req, res, next) => {
-	console.log("CHECK"),
-	console.log(req.applicant.satus),
-	// const applicant = new Applicant({
-	// 	if (req.body.)
-	// })
-	res.redirect("/")
+	Applicant.findByIdAndUpdate(req.body.approve, { status: 'approved' },
+		function (err, docs) {
+			if (err){
+        console.log(err)
+			}
+			else{
+        console.log("Approved User : ", docs);
+			}
+	}),
+	// console.log(req.body.approve)
+
+	res.redirect("/admin")
 })
 
 module.exports = app;

@@ -1,6 +1,8 @@
 extends layout
 
+
 block content
+  script(type='text/javascript' src='hello.js')
   h1 Admin Dashboard
   a(href="/" class="bottom-nav") ⬅ Home
   br
@@ -25,7 +27,8 @@ block content
           if applicant.status == 'pending'
             tr 
               td
-                a(href='/admin' action='/admin' method='POST' class='admin-dashboard__approve-btn' id=applicant._id) Approve
+                form(action='#' method='POST')
+                  button(name="approve" type="submit" value=applicant._id) Approve
               td #{applicant.name}
               td #{applicant.tenants}   
               td #{applicant.pets}
