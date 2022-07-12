@@ -10,7 +10,7 @@ var ApplicantSchema = new Schema({
 	seeking: { type: Array },
 	preferred_location: { type: Array },
 	bedrooms: { type: Array },
-	price: { type: Array },
+	price: { type: Object },
 	pets: { type: Array },
 	pets_string: { type: String },
 	vehicles: { type: String },
@@ -21,7 +21,7 @@ var ApplicantSchema = new Schema({
 });
 
 ApplicantSchema.virtual("price_range").get(function () {
-	return (this.price[0].min == 0) ? `Up to $${this.price[0].max}` : `$${this.price[0].min}-${this.price[0].max}`
+	return (this.price.min == 0) ? `Up to $${this.price.max}` : `$${this.price.min}-${this.price.max}`
 });
 
 // ApplicantSchema.virtual("pets_formatted").get(function () {
