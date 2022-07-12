@@ -148,11 +148,11 @@ app.post("/submit-listing", (req, res, next) => {
 		email: req.body.email,
 		date_added: new Date,
 		tenants: req.body.tenants,
-		// seeking: ,
+		seeking: req.body.seeking,
 		preferred_location: req.body.location,
 		bedrooms: req.body.tenants,
 		price: {min: req.body.min, max: req.body.max},
-		// pets: { type: Array },
+		// pets: { type: Array }, // Currently using string instead of array or object
 		pets_string: req.body.pets,
 		vehicles: req.body.vehicles,
 		occupation_location: req.body.occupationLocation,
