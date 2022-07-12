@@ -21,8 +21,6 @@ html(lang='en')
       if user
         a(href="/admin") Admin Dashboard
         br
-        span Logged in as #{user.username}
-        br
         a(href="/logout") Logout
       else 
         a(href="/login") Login

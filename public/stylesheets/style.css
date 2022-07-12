@@ -211,5 +211,6 @@ div.applicant-form {
 }
 
 .row {
+  display: block;
   margin-bottom: 50px;
 }
