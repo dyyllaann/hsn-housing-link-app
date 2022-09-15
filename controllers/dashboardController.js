@@ -11,6 +11,11 @@ exports.applicants_list = function (req, res) {
 		}); 
 };
 
+// Update applicant entry
+// exports.applicant_update = function (req, res) {
+
+// }
+
 // // Display list of all pending applicants.
 // exports.applicants_list = function (req, res) {
 // 	Applicant.find({ status: pending }, "name tenants pets_string vehicles seeking preferred_location bedrooms price interests story")

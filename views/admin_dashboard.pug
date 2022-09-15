@@ -24,6 +24,7 @@ block content
           th Price Range
           th Interests
           th Story
+          th Edit
         each applicant in applicants_list
           if applicant.status == 'pending'
             tr 
@@ -40,6 +41,8 @@ block content
               td #{applicant.price_range}
               td #{applicant.interests}
               td #{applicant.story}
+              td 
+                a(href="#") Edit
       br
       br
       h5 Approved Listings
@@ -56,6 +59,7 @@ block content
           th Price Range
           th Interests
           th Story
+          th Edit
         each applicant in applicants_list
           if applicant.status == 'approved'
             tr 
@@ -72,6 +76,8 @@ block content
               td #{applicant.price_range}
               td #{applicant.interests}
               td #{applicant.story}
+              td
+                a(href="#") Edit
       br
       br
       h5 Archived Listings
