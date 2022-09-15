@@ -1,6 +1,5 @@
 extends layout
 
-
 block content
   script(type='text/javascript' src='hello.js')
   h1 Admin Dashboard
@@ -31,7 +30,7 @@ block content
               td
                 form(action='#' method='POST')
                   button(name="approve" type="submit" value=applicant._id) Approve
-              td #{applicant.name}
+              td #{applicant.name_formatted}
               td #{applicant.tenants}   
               td #{applicant.pets}
               td #{applicant.vehicles}
@@ -66,7 +65,7 @@ block content
               td 
                 form(action='/archive' method='POST')
                   button(name="archive" type="submit" value=applicant._id) Archive
-              td #{applicant.name}
+              td #{applicant.name_formatted}
               td #{applicant.tenants}   
               td #{applicant.pets}
               td #{applicant.vehicles}

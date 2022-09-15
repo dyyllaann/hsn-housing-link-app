@@ -3,6 +3,8 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ApplicantSchema = new Schema({
+	firstName: { type: String },
+	lastName: { type: String },
 	name: { type: String },
 	email: { type: String },
 	date_added: { type: Date },
@@ -25,6 +27,10 @@ var ApplicantSchema = new Schema({
 
 ApplicantSchema.virtual("price_range").get(function () {
 	return (this.price.min == 0) ? `Up to $${this.price.max}` : `$${this.price.min}-${this.price.max}`
+});
+
+ApplicantSchema.virtual("name_formatted").get(function () {
+	return (this.lastName) ? (`${this.firstName} ${this.lastName[0]}.`) : this.name
 });
 
 // ApplicantSchema.virtual("pets_formatted").get(function () {

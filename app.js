@@ -144,7 +144,8 @@ app.post(
 // POST submit-listing page.
 app.post("/submit-listing", (req, res, next) => {
 	const applicant = new Applicant({
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		email: req.body.email,
 		date_added: new Date,
 		tenants: req.body.tenants,

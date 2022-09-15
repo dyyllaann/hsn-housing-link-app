@@ -6,7 +6,7 @@ block content
       each applicant in applicants_list
         if applicant.status == 'approved'
           div(class='applicant-card')
-            h1 #{applicant.name}
+            h1 #{applicant.name_formatted}
             span(class='applicant-card__title') Tenants: 
               p #{applicant.tenants} 
               span(class='applicant-card__title') Pets:  
@@ -48,12 +48,14 @@ block content
           input(class='listing__input' type="text" name="email" id="email" placeholder="Your email" autocorrect="off" autocapitalize="off")
         
         div
-          label(for="name") Name
-          input(class='listing__input' type="text" name="name" id="name" placeholder="Name" autocorrect="off" autocapitalize="on")
+          label(for="firstName") Name
+          div(class="listing__form__name-section")
+            input(class='listing__input' type="text" name="firstName" id="firstName" placeholder="First Name" autocorrect="off" autocapitalize="on")
+            input(class='listing__input' type="text" name="lastName" id="lastName" placeholder="Last Name" autocorrect="off" autocapitalize="on")
         
         div
           label(for="occupation") Occupation
-          input(class='listing__input' type="text" name="occupation" id="occupation" placeholder="Your occupation" autocorrect="off" autocapitalize="off")
+          input(class='listing__input' type="text" name="occupation" id="occupation" placeholder="Your Occupation" autocorrect="off" autocapitalize="on")
         
         div(class='listing__form__section')
           div
@@ -119,7 +121,7 @@ block content
             label(for="quilcene") Quilcene
           div
             input(class='listing__input' name="location" id="anywhere" value="Anywhere in Jefferson County" type="checkbox") 
-            label(for="anywhere") Anywhere in Jefferson County
+            label(for="anywhere") Anywhere in East Jefferson County
 
         div(class='listing__form__section')
           label(for="price-range") Price Range (either a range for monthly rent or purchase price range)
@@ -133,7 +135,7 @@ block content
             
         div
           label(for="interests") Interests
-          input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="off" autocapitalize="off")
+          input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="on" autocapitalize="on")
         
         div
           label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 250 characters.

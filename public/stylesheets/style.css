@@ -166,6 +166,16 @@ div.applicant-form {
   margin-right: 0;
 }
 
+.listing__form__name-section {
+  width: 100%;
+  display: flex;
+  gap: 1.25%;
+}
+
+.listing__form__name-section > div {
+  flex-grow: 1;
+}
+
 .listing__input {
   margin-bottom: 10px;
   /* width: 100%; */
