@@ -126,6 +126,11 @@ h1 {
   font-weight: 500;
 }
 
+.btn-edit {
+  all: unset;
+  color: #007bff;
+}
+
 div.applicant-form {
   display: block;
   width: 100vw;

@@ -76,7 +76,8 @@ block content
               td #{applicant.interests}
               td #{applicant.story}
               td
-                a(href="#") Edit
+                form(action="/edit" method='GET')
+                  button(type="submit" class="btn-edit" name="id" value=applicant._id) Edit
       br
       br
       h5 Archived Listings

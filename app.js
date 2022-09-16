@@ -115,7 +115,10 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", applicant_controller.applicants_list);
 
 // GET admin page.
-app.get("/admin", dashboard_controller.applicants_list)
+app.get("/admin", dashboard_controller.applicants_list);
+
+// GET edit page.
+app.get("/edit", dashboard_controller.edit);
 
 // GET login page.
 app.get("/login", (req, res) => {

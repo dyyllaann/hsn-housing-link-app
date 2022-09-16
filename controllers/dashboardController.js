@@ -11,8 +11,10 @@ exports.applicants_list = function (req, res) {
 		}); 
 };
 
-// Update applicant entry
-// exports.applicant_update = function (req, res) {
+// Edit get
+exports.edit = function (req, res) {
+	res.render("applicant_form", { title: "Applicant Form" })
+}
 
 // }
 
