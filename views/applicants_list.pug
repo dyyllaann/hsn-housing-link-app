@@ -30,9 +30,8 @@ block content
           p No applicants found!
   div(class='row')      
     div(class='applicant-form')
-      h1(class='listing__form__title') Post a Listing
-
-      form(class='listing__form' action='/submit-listing' method="POST")
+      div(class='listing__form__guidelines')
+        h1(class='listing__form__title') Post a Listing
         p Our new Housing Link project is an effort by HSN to connect home seekers with home providers. Folks seeking housing will be able to post a simple description of what they’re looking for, and folks with housing space to share will be able to review the Link to find a community member who could live in their space. Housing Solutions Network does not screen either the home seekers or home providers, and we do NOT recommend sharing sensitive, or information about legally protected classes via the Housing Link, or prior to meeting with each other. 
         p Housing Link profiles will be prioritized by the following criteria:
         p - People who work for employers or small business owners who serve Jefferson County
@@ -43,6 +42,7 @@ block content
         p Housing Solutions Network cannot be responsible or liable for the conduct of home seekers (renters) or home providers (landlords). 
         p Thank you for being part of our housing network!
 
+      form(class='listing__form' action='/submit-listing' method="POST")
         div
           label(for="email") Email
           input(class='listing__input' type="text" name="email" id="email" placeholder="Your email" autocorrect="off" autocapitalize="off")
