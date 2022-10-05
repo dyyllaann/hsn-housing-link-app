@@ -52,6 +52,7 @@ h1 {
   font-size: 0.8em;
   line-height: 1.2;
   overflow: hidden;
+  table-layout: fixed;
 }
 
 .admin-dashboard > table {

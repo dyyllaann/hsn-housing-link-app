@@ -12,24 +12,26 @@ block content
       if applicants_list
       table 
         tr 
-          th Status
-          th Name
-          th Tenants 
-          th Pets
-          th Vehicles
+          th(style='width: 60px') Status
+          th(style='width: 60px') Name
+          th(style='width: 60px') Tenants 
+          th(style='width: 60px') Pets
+          th(style='width: 60px') Vehicles
           th Seeking
           th Location
           th Bedrooms
-          th Price Range
+          th(style='width: 100px') Price Range
           th Interests
           th Story
-          th Edit
+          th(style='width: 40px') Edit
         each applicant in applicants_list
           if applicant.status == 'pending'
             tr 
               td
                 form(action='#' method='POST')
-                  button(name="approve" type="submit" value=applicant._id) Approve
+                  button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
+                form(action='/archive' method='POST')
+                  button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
               td #{applicant.name_formatted}
               td #{applicant.tenants}   
               td #{applicant.pets}
@@ -47,22 +49,22 @@ block content
       h5 Approved Listings
       table 
         tr 
-          th Status
-          th Name
-          th Tenants 
-          th Pets
-          th Vehicles
+          th(style='width: 60px') Status
+          th(style='width: 60px') Name
+          th(style='width: 60px') Tenants 
+          th(style='width: 60px') Pets
+          th(style='width: 60px') Vehicles
           th Seeking
           th Location
           th Bedrooms
           th Price Range
           th Interests
           th Story
-          th Edit
+          th(style='width: 40px') Edit
         each applicant in applicants_list
           if applicant.status == 'approved'
             tr 
-              td 
+              td(style='width: 60px')
                 form(action='/archive' method='POST')
                   button(name="archive" type="submit" value=applicant._id) Archive
               td #{applicant.name_formatted}
@@ -101,7 +103,7 @@ block content
               td
                 form(action='#' method='POST')
                   button(name="restore" type="submit" value=applicant._id) Restore
-              td #{applicant.name}
+              td #{applicant.name_formatted}
               td #{applicant.tenants}   
               td #{applicant.pets}
               td #{applicant.vehicles}
