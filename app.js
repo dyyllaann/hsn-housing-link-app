@@ -202,7 +202,7 @@ app.post("/archive", (req, res, next) => {
 app.post("/restore", (req, res, next) => {
 	Applicant.findByIdAndUpdate(
 		req.body.restore,
-		{ status: "restore" },
+		{ status: "approved" },
 		function (err, docs) {
 			if (err) {
 				console.log(err);

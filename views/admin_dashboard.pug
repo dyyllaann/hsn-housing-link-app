@@ -101,7 +101,7 @@ block content
           if applicant.status == 'archived'
             tr 
               td
-                form(action='#' method='POST')
+                form(action='/restore' method='POST')
                   button(name="restore" type="submit" value=applicant._id) Restore
               td #{applicant.name_formatted}
               td #{applicant.tenants}   
