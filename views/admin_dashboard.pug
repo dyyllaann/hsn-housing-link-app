@@ -28,7 +28,7 @@ block content
           if applicant.status == 'pending'
             tr 
               td
-                form(action='#' method='POST')
+                form(action='/approve' method='POST')
                   button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
                 form(action='/archive' method='POST')
                   button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive

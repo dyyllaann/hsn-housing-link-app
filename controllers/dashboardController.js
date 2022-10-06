@@ -47,14 +47,50 @@ exports.applicant_edit_post = function (req, res) {
 	})
 }
 
-// }
+// Applicant approve POST
+exports.approve = function (req, res, next) {
+	Applicant.findByIdAndUpdate(
+		req.body.approve,
+		{ status: "approved" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Approved User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+};
 
-// // Display list of all pending applicants.
-// exports.applicants_list = function (req, res) {
-// 	Applicant.find({ status: pending }, "name tenants pets_string vehicles seeking preferred_location bedrooms price interests story")
-// 		.sort({date : -1})
-// 		.exec(function (err, applicants) {
-// 			if (err) { return next(err); }
-// 			res.render('admin_dashboard', { pending_applicants_list: applicants, user: req.user });
-// 		}); 
-// };
+// Applicant archive POST
+exports.archive = function (req, res, next) {
+	Applicant.findByIdAndUpdate(
+		req.body.archive,
+		{ status: "archived" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Archived User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+}
+
+// Applicant restore POST
+exports.restore = function (req, res, next) {
+	Applicant.findByIdAndUpdate(
+		req.body.restore,
+		{ status: "approved" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Restored User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+};
