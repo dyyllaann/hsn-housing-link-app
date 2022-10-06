@@ -16,34 +16,7 @@ const LocalStrategy = require("passport-local").Strategy;
 // var helmet = require('helmet');
 
 /* Models */
-// var User = require("./models/user.js");
-const Schema = mongoose.Schema;
-const User = mongoose.model(
-	"User",
-	new Schema({
-		username: { type: String, required: true },
-		password: { type: String, required: true },
-	})
-);
-// const Applicant = mongoose.model(
-// 	"Applicant",
-// 	new Schema({
-// 		name: { type: String },
-// 		date_added: { type: Date },
-// 		tenants: { type: String },
-// 		seeking: { type: Array },
-// 		preferred_location: { type: Array },
-// 		bedrooms: { type: Array },
-// 		price: { type: Array },
-// 		pets: { type: Array },
-// 		pets_string: { type: String },
-// 		vehicles: { type: String },
-// 		occupation_location: { type: String },
-// 		story: { type: String },
-// 		interests: { type: String },
-// 		status: { type: String },
-// 	})
-// );
+var User = require("./models/user.js");
 const Applicant = require('./models/applicant');
 
 /* Controllers */
@@ -173,19 +146,6 @@ app.post("/submit-listing", (req, res, next) => {
 		res.redirect("/");
 	});
 });
-
-// app.post("/admin", (req, res, next) => {
-// 	Applicant.findByIdAndUpdate(req.body.approve, { status: 'approved' },
-// 		function (err, docs) {
-// 			if (err) {
-//         console.log(err)
-// 			}
-// 			else {
-//         console.log("Approved User : ", docs);
-// 			}
-// 			res.redirect("/admin")
-// 	});
-// });
 
 app.post("/approve", dashboard_controller.approve);
 
