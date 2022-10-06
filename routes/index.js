@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 // var User = require("../models/user.js");
 
+/* Controllers */
+// const applicant_controller = require('./controllers/applicantController');
+const dashboard_controller = require('../controllers/dashboardController');
+
 /* Auth dependencies */
 // const session = require("express-session");
 // const passport = require("passport");
@@ -57,5 +61,11 @@ const applicant_controller = require('../controllers/applicantController');
 
 // GET error page.
 router.get("/error", (req, res) => res.render("error"));
+
+// GET edit page.
+router.get("/edit", dashboard_controller.applicant_edit_get);
+
+// POST edit page.
+router.post("/edit_post", dashboard_controller.applicant_edit_post);
 
 module.exports = router;

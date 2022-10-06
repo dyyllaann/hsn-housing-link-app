@@ -11,9 +11,40 @@ exports.applicants_list = function (req, res) {
 		}); 
 };
 
-// Edit get
-exports.edit = function (req, res) {
-	res.render("applicant_form", { title: "Applicant Form" })
+// Applicant Edit GET
+exports.applicant_edit_get = function (req, res, next) {
+	async.parallel(
+		{
+			applicant: function (callback) {
+				// console.log(req.query.id);
+				Applicant.findById(req.query.id).exec(callback);
+			},
+		},
+		function (err, results) {
+			if (err) {
+				return next(err);
+			}
+			res.render("applicant_form", {
+				title: "Applicant Form",
+				applicant: results.applicant,
+			});
+		}
+	);
+}
+
+// Applicant Edit POST
+exports.applicant_edit_post = function (req, res) {
+	// console.log(req);
+	console.log(`req.params.id: ${req.params['id']}`);
+	Applicant.findByIdAndUpdate(req.params.id, {}, function(err, docs) {
+		if (err) {
+        console.log(err)
+    }
+    else {
+        console.log("Updated User : ", docs);
+				res.redirect('/admin');
+    }
+	})
 }
 
 // }

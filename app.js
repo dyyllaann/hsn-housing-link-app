@@ -51,7 +51,7 @@ const applicant_controller = require('./controllers/applicantController');
 const dashboard_controller = require('./controllers/dashboardController');
 
 /* Routers */
-// var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 
 /* Mongoose connection */
 var mongoDB =
@@ -92,7 +92,7 @@ passport.deserializeUser(function (id, done) {
 var app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
-// app.use("/", indexRouter);
+app.use("/", indexRouter);
 
 app.use(express.json());
 
@@ -117,8 +117,11 @@ app.get("/", applicant_controller.applicants_list);
 // GET admin page.
 app.get("/admin", dashboard_controller.applicants_list);
 
-// GET edit page.
-app.get("/edit", dashboard_controller.edit);
+// // GET edit page.
+// app.get("/edit/", dashboard_controller.applicant_edit_get);
+
+// // POST edit page.
+// app.post("/edit_post", dashboard_controller.applicant_edit_post);
 
 // GET login page.
 app.get("/login", (req, res) => {
