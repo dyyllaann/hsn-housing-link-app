@@ -22,6 +22,7 @@ const Applicant = require('./models/applicant');
 /* Controllers */
 const applicant_controller = require('./controllers/applicantController');
 const dashboard_controller = require('./controllers/dashboardController');
+const login_controller = require('./controllers/loginController');
 
 /* Routers */
 var indexRouter = require('./routes/index');
@@ -87,31 +88,9 @@ app.use(express.urlencoded({ extended: false }));
 // GET index page.
 app.get("/", applicant_controller.applicants_list);
 
-// GET admin page.
-app.get("/admin", dashboard_controller.applicants_list);
-
-// // GET edit page.
-// app.get("/edit/", dashboard_controller.applicant_edit_get);
-
-// // POST edit page.
-// app.post("/edit_post", dashboard_controller.applicant_edit_post);
-
-// GET login page.
-app.get("/login", (req, res) => {
-	res.render("login");
-});
-
-// GET logout page.
-app.get("/logout", (req, res) => {
-	req.logout(function (err) {
-		if (err) {
-			return next(err);
-		}
-		res.redirect("/");
-	});
-});
-
-// POST login page.
+/* Auth Routes */
+app.get("/login", login_controller.login_get);
+app.get("/logout", login_controller.logout);
 app.post(
 	"/login",
 	passport.authenticate("local", {
@@ -147,10 +126,12 @@ app.post("/submit-listing", (req, res, next) => {
 	});
 });
 
+/* Admin Routes */
+app.get("/admin", dashboard_controller.applicants_list);
 app.post("/approve", dashboard_controller.approve);
-
 app.post("/archive", dashboard_controller.archive);
-
 app.post("/restore", dashboard_controller.restore);
+// app.get("/edit/", dashboard_controller.applicant_edit_get);
+// app.post("/edit_post", dashboard_controller.applicant_edit_post);
 
 module.exports = app;
