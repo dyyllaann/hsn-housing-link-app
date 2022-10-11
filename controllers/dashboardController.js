@@ -16,8 +16,7 @@ exports.applicant_edit_get = function (req, res, next) {
 	async.parallel(
 		{
 			applicant: function (callback) {
-				// console.log(req.query.id);
-				Applicant.findById(req.query.id).exec(callback);
+				Applicant.findById(req.params.id).exec(callback);
 			},
 		},
 		function (err, results) {
@@ -34,14 +33,16 @@ exports.applicant_edit_get = function (req, res, next) {
 
 // Applicant Edit POST
 exports.applicant_edit_post = function (req, res) {
-	// console.log(req);
-	console.log(`req.params.id: ${req.params['id']}`);
-	Applicant.findByIdAndUpdate(req.params.id, {}, function(err, docs) {
+	Applicant.findByIdAndUpdate(req.params.id, { 
+		_id: req.params.id, 
+		interests: req.body.interests, 
+		story: req.body.story 
+	}, function(err, docs) {
 		if (err) {
         console.log(err)
     }
     else {
-        console.log("Updated User : ", docs);
+        console.log("Updated User.");
 				res.redirect('/admin');
     }
 	})

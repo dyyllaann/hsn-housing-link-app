@@ -43,8 +43,8 @@ block content
               td #{applicant.interests}
               td #{applicant.story}
               td
-                form(action="/edit" method='GET')
-                  button(type="submit" class="btn-edit" name="id" value=applicant._id) Edit
+                form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                  button(type="submit" class="btn-edit") Edit
       br
       br
       h5 Approved Listings
@@ -79,8 +79,8 @@ block content
               td #{applicant.interests}
               td #{applicant.story}
               td
-                form(action="/edit" method='GET')
-                  button(type="submit" class="btn-edit" name="id" value=applicant._id) Edit
+                form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                  button(type="submit" class="btn-edit") Edit
       br
       br
       h5 Archived Listings

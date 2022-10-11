@@ -108,6 +108,7 @@ app.post("/approve", dashboard_controller.approve);
 app.post("/archive", dashboard_controller.archive);
 app.post("/restore", dashboard_controller.restore);
 // app.get("/edit/", dashboard_controller.applicant_edit_get);
-// app.post("/edit_post", dashboard_controller.applicant_edit_post);
+app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
+app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
 
 module.exports = app;
