@@ -42,8 +42,9 @@ block content
               td #{applicant.price_range}
               td #{applicant.interests}
               td #{applicant.story}
-              td 
-                a(href="#") Edit
+              td
+                form(action="/edit" method='GET')
+                  button(type="submit" class="btn-edit" name="id" value=applicant._id) Edit
       br
       br
       h5 Approved Listings
