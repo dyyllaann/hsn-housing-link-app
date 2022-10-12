@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
 	applicantId: { type: String },
+	applicantEmail: { type: String },
 	firstName: { type: String },
 	lastName: { type: String },
 	email: { type: String },

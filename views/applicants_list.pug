@@ -8,10 +8,13 @@ block content
       const modal = document.querySelector('#modal');
       modal.style.display = "block";
 
+      // Set message target id
       const applicantId = document.querySelector('#applicantId');
       applicantId.value = param._id;
 
-      console.log(param)
+      // Set message target email
+      const applicantEmail = document.querySelector('#applicantEmail');
+      applicantEmail.value = param.email;
     }
 
     function closeModal() {
@@ -47,7 +50,7 @@ block content
           br
           p Create a listing to allow a home provider to connect with you about rental opportunities. 
           div(class='btn hero-btn') Create Post
-          
+
   div(class='row')
     div(id='modal')
       div(id='modal-content')
@@ -55,6 +58,7 @@ block content
         h1(id='modal-header') Send A Message
         form(class='listing__form' action='/connect' method="POST")
           input(type="hidden" name="applicantId" id="applicantId")
+          input(type="hidden" name="applicantEmail" id="applicantEmail")
 
           div
             label(for="email") Email

@@ -12,19 +12,29 @@ block content
       if admin_data.messages
         table 
           tr
+            th(style='width: 60px') Status
             th First Name 
             th Last Name
             th Email
             th Message
-            th Status
+            th(style='width: 40px') Edit
           each message in admin_data.messages
             if message.status == 'pending'
               tr 
+                td 
+                  form(action='/#' method='POST')
+                    button(name="approve" type="submit" /*value=applicant._id*/ style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
+                  form(action='/#' method='POST')
+                    button(name="archive" type="submit" /*value=applicant._id*/ style="background-color: #ff7477; width: 100%;") Archive
                 td #{message.firstName}
                 td #{message.lastName}
                 td #{message.email}
                 td #{message.message}
-                td #{message.status}
+                td
+                  //- form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                  form(action=`#` method='GET')
+                    button(type="submit" class="btn-edit") Edit
+                //- td #{message.status}
       br
       h5 Pending Listings
       //- if applicants_list
