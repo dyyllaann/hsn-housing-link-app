@@ -139,6 +139,25 @@ div.applicant-form {
   width: 100vw;
 }
 
+.hero {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 200px;
+}
+
+.hero-btn {
+  background-color: #add8e6;
+}
+
+.connect-btn {
+  background-color: #add8e6;
+  margin: auto 0 0 0;
+}
+
 .listing__form {
   display: inline-block;
   margin-top: 20px;
@@ -212,6 +231,44 @@ div.applicant-form {
 
 .listing__input.submit {
   background-color: #add8e6;
+}
+
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal-content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
+  margin: 5% auto;
+  border: 1px solid #888;
+  width: 70vw;
+}
+
+#modal-close {
+  cursor: pointer;
+  align-self: flex-end;
+  color: #aaa;
+  font-size: 36px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.modal-form {
+  background-color: blue;
+  color: red;
 }
 
 #story {
