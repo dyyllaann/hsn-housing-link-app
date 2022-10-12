@@ -17,7 +17,7 @@ block content
             th Last Name
             th Email
             th Message
-            th(style='width: 40px') Edit
+            th(style='width: 40px') Approve
           each message in admin_data.messages
             if message.status == 'pending'
               tr 

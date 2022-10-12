@@ -61,13 +61,17 @@ h1 {
 
 .admin-dashboard table, th, td {
   overflow: scroll;
-  border: 1px solid black;
+  border: 1px solid #bbb;
   border-collapse: collapse;
   padding: 5px;
 }
 
 .admin-dashboard tr:nth-child(even) {
   background-color: #f2fafa;
+}
+
+.admin-dashboard tr:nth-child(odd) {
+  background-color: #fbfbfb;
 }
 
 .admin-dashboard__approve-btn {
