@@ -140,13 +140,29 @@ div.applicant-form {
 }
 
 .hero {
-  min-height: 50vh;
+  height: 60vh;
   display: flex;
   flex-direction: row;
+  text-align: center;
+}
+
+.hero > div {
+  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  gap: 200px;
+  height: 100%;
+  width: 50vw;
+  padding: 60px;
+}
+
+.hero-left {
+  background-color: #7aa852;
+  color: #ffffff;
+}
+
+.hero-right {
+  background-color: #ffffff;
+  color: #7aa852;
 }
 
 .hero-btn {

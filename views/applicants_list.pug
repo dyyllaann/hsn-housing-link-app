@@ -25,14 +25,29 @@ block content
       }
     }
   
-  div(class='row')
+  //- div(class='row')
     div(class='hero')
-      div
-        h1 Home Providers
-        div(class='btn hero-btn') Browse Posts
-      div
-        h1 Home Seekers
-        div(class='btn hero-btn') Create Post
+      div(class='hero-left')
+        div
+          h1 Home Providers
+          p Individuals with profiles on this site are people who work for employers or small business owners who work/serve Jefferson County and are in the area median income of <120%.
+          p If your housing opportunity falls above this guidance (<$2,ooo for rent incl. utilities, or <$300,000 for purchase), it is unlikely able to support the local workforce at this time. 
+          p #[strong Step One:] Review the Housing Link posts
+          p #[strong Step Two:] Contact HSN to inquire about a post
+          p #[strong Step Three:] Provide housing to a community member
+          br
+          p Browse listings and connect with home seekers who might be a good fit for your property. 
+          div(class='btn hero-btn') Browse Posts
+      div(class='hero-right')
+        div
+          h1 Home Seekers
+          p #[strong Step One:] Fill out this form to start your post.
+          p #[strong Step Two:] Review the Housing Link post for accuracy; profiles are valid for 60 days and will automatically be removed unless otherwise communicated by seeker.
+          p #[strong Step Three:] Wait to be contacted by HSN about an inquiry.
+          br
+          p Create a listing to allow a home provider to connect with you about rental opportunities. 
+          div(class='btn hero-btn') Create Post
+          
   div(class='row')
     div(id='modal')
       div(id='modal-content')
