@@ -1,4 +1,5 @@
 var Applicant = require("../models/applicant");
+var Message = require("../models/message");
 var async = require("async");
 
 // Display list of all applicants.
@@ -9,6 +10,30 @@ exports.applicants_list = function (req, res) {
 			if (err) { return next(err); }
 			res.render('admin_dashboard', { title: 'Admin Dashboard', applicants_list: list_applicants, user: req.user });
 		}); 
+};
+
+// Display list of all admin data (messages and applicants).
+exports.admin_data = function (req, res) {
+	async.parallel(
+		{
+			messages: function (callback) {
+				Message
+					.find({}, "_id name firstName lastName email message status")
+					.sort({date : -1})
+					.exec(callback)
+			},
+			applicants: function (callback) {
+				Applicant
+					.find({}, "_id name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status")
+					.sort({date : -1})
+					.exec(callback)
+			},
+		},
+		function (err, admin_data) {
+			if (err) { return next(err)}
+			res.render('admin_dashboard', { title: 'Admin Dashboard', admin_data, user: req.user })
+		}
+	)
 };
 
 // Applicant Edit GET

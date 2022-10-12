@@ -8,8 +8,27 @@ block content
   br
   if user
     div(class='admin-dashboard')
+      h5 Pending Messages 
+      if admin_data.messages
+        table 
+          tr
+            th First Name 
+            th Last Name
+            th Email
+            th Message
+            th Status
+          each message in admin_data.messages
+            if message.status == 'pending'
+              tr 
+                td #{message.firstName}
+                td #{message.lastName}
+                td #{message.email}
+                td #{message.message}
+                td #{message.status}
+      br
       h5 Pending Listings
-      if applicants_list
+      //- if applicants_list
+      if admin_data.applicants
       table 
         tr 
           th(style='width: 60px') Status
@@ -24,7 +43,8 @@ block content
           th Interests
           th Story
           th(style='width: 40px') Edit
-        each applicant in applicants_list
+        //- each applicant in applicants_list
+        each applicant in admin_data.applicants
           if applicant.status == 'pending'
             tr 
               td
@@ -62,7 +82,8 @@ block content
           th Interests
           th Story
           th(style='width: 40px') Edit
-        each applicant in applicants_list
+        //- each applicant in applicants_list
+        each applicant in admin_data.applicants
           if applicant.status == 'approved'
             tr 
               td(style='width: 60px')
@@ -84,7 +105,8 @@ block content
       br
       br
       h5 Archived Listings
-      if applicants_list
+      //- if applicants_list
+      if admin_data
       table 
         tr 
           th Status
@@ -98,7 +120,8 @@ block content
           th Price Range
           th Interests
           th Story
-        each applicant in applicants_list
+        //- each applicant in applicants_list
+        each applicant in admin_data.applicants
           if applicant.status == 'archived'
             tr 
               td
