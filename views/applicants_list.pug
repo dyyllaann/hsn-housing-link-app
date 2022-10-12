@@ -8,6 +8,9 @@ block content
       const modal = document.querySelector('#modal');
       modal.style.display = "block";
 
+      const applicantId = document.querySelector('#applicantId');
+      applicantId.value = param._id;
+
       console.log(param)
     }
 
@@ -36,6 +39,8 @@ block content
         span(id='modal-close' onclick='closeModal()') &times;
         h1(id='modal-header') Send A Message
         form(class='listing__form' action='/connect' method="POST")
+          input(type="hidden" name="applicantId" id="applicantId")
+
           div
             label(for="email") Email
             input(class='listing__input' type="text" name="email" id="email" placeholder="Your email" autocorrect="off" autocapitalize="off")

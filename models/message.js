@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
+	applicantId: { type: String },
 	firstName: { type: String },
 	lastName: { type: String },
 	email: { type: String },

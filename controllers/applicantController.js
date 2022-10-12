@@ -42,6 +42,7 @@ exports.submit_listing = function (req, res, next) {
 // POST submit-listing page.
 exports.connect = function (req, res, next) {
 	const message = new Message({
+		applicantId: req.body.applicantId,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,
