@@ -17,23 +17,45 @@ exports.admin_data = function (req, res) {
 	async.parallel(
 		{
 			messages: function (callback) {
-				Message
-					.find({}, "_id applicantEmail name firstName lastName email message status")
-					.sort({date : -1})
-					.exec(callback)
+				Message.find(
+					{},
+					"_id applicantEmail name firstName lastName email message status"
+				)
+					.sort({ date: -1 })
+					.exec(callback);
+			},
+			pendingMessageCount: function (callback) {
+				Message.countDocuments({ status: "pending" }).exec(callback);
 			},
 			applicants: function (callback) {
-				Applicant
-					.find({}, "_id email name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status")
-					.sort({date : -1})
-					.exec(callback)
+				Applicant.find(
+					{},
+					"_id email name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status"
+				)
+					.sort({ date: -1 })
+					.exec(callback);
+			},
+			pendingApplicantCount: function (callback) {
+				Applicant.countDocuments({ status: "pending" }).exec(callback);
+			},
+			approvedApplicantCount: function (callback) {
+				Applicant.countDocuments({ status: "approved" }).exec(callback);
+			},
+			archivedApplicantCount: function (callback) {
+				Applicant.countDocuments({ status: "archived" }).exec(callback);
 			},
 		},
 		function (err, admin_data) {
-			if (err) { return next(err)}
-			res.render('admin_dashboard', { title: 'Admin Dashboard', admin_data, user: req.user })
+			if (err) {
+				return next(err);
+			}
+			res.render("admin_dashboard", {
+				title: "Admin Dashboard",
+				admin_data,
+				user: req.user,
+			});
 		}
-	)
+	);
 };
 
 // Applicant Edit GET

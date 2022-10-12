@@ -1,15 +1,14 @@
 extends layout
 
 block content
-  script(type='text/javascript' src='hello.js')
   h1 Admin Dashboard
   a(href="/" class="bottom-nav") ⬅ Home
   br
   br
   if user
     div(class='admin-dashboard')
-      h5 Pending Messages 
-      if admin_data.messages
+      h5=`Pending Messages (${admin_data.pendingMessageCount})`
+      if admin_data.pendingMessageCount > 0
         table 
           tr
             th(style='width: 60px') Status
@@ -30,118 +29,128 @@ block content
                 td #{message.message}
                 td
                   a(href=`mailto:${message.applicantEmail}?subject=HSN Housing Link: ${message.firstName} wants to connect with you!&body=${message.firstName} says:%0D%0A%0D%0A"${message.message}"` target='_blank') Approve
-      br
-      h5 Pending Listings
-      //- if applicants_list
-      if admin_data.applicants
-      table 
-        tr 
-          th(style='width: 60px') Status
-          th(style='width: 60px') Name
-          th(style='width: 60px') Tenants 
-          th(style='width: 60px') Pets
-          th(style='width: 60px') Vehicles
-          th Seeking
-          th Location
-          th Bedrooms
-          th(style='width: 100px') Price Range
-          th Interests
-          th Story
-          th(style='width: 40px') Edit
-        //- each applicant in applicants_list
-        each applicant in admin_data.applicants
-          if applicant.status == 'pending'
-            tr 
-              td
-                form(action='/approve' method='POST')
-                  button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
-                form(action='/archive' method='POST')
-                  button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
-              td #{applicant.name_formatted}
-              td #{applicant.tenants}   
-              td #{applicant.pets}
-              td #{applicant.vehicles}
-              td #{applicant.seeking.join(", ")}
-              td #{applicant.preferred_location.join(", ")}
-              td #{applicant.bedrooms.join(", ")}
-              td #{applicant.price_range}
-              td #{applicant.interests}
-              td #{applicant.story}
-              td
-                form(action=`/admin/users/${applicant.id}/edit` method='GET')
-                  button(type="submit" class="btn-edit") Edit
+      else 
+        h6 No pending messages found.
       br
       br
-      h5 Approved Listings
-      table 
-        tr 
-          th(style='width: 60px') Status
-          th(style='width: 60px') Name
-          th(style='width: 60px') Tenants 
-          th(style='width: 60px') Pets
-          th(style='width: 60px') Vehicles
-          th Seeking
-          th Location
-          th Bedrooms
-          th Price Range
-          th Interests
-          th Story
-          th(style='width: 40px') Edit
-        //- each applicant in applicants_list
-        each applicant in admin_data.applicants
-          if applicant.status == 'approved'
-            tr 
-              td(style='width: 60px')
-                form(action='/archive' method='POST')
-                  button(name="archive" type="submit" value=applicant._id) Archive
-              td #{applicant.name_formatted}
-              td #{applicant.tenants}   
-              td #{applicant.pets}
-              td #{applicant.vehicles}
-              td #{applicant.seeking.join(", ")}
-              td #{applicant.preferred_location.join(", ")}
-              td #{applicant.bedrooms.join(", ")}
-              td #{applicant.price_range}
-              td #{applicant.interests}
-              td #{applicant.story}
-              td
-                form(action=`/admin/users/${applicant.id}/edit` method='GET')
-                  button(type="submit" class="btn-edit") Edit
+      h5=`Pending Listings (${admin_data.pendingApplicantCount})`
+      if admin_data.pendingApplicantCount > 0
+        table 
+          tr 
+            th(style='width: 60px') Status
+            th(style='width: 60px') Name
+            th(style='width: 60px') Tenants 
+            th(style='width: 60px') Pets
+            th(style='width: 60px') Vehicles
+            th Seeking
+            th Location
+            th Bedrooms
+            th(style='width: 100px') Price Range
+            th Interests
+            th Story
+            th(style='width: 40px') Edit
+          //- each applicant in applicants_list
+          each applicant in admin_data.applicants
+            if applicant.status == 'pending'
+              tr 
+                td
+                  form(action='/approve' method='POST')
+                    button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
+                  form(action='/archive' method='POST')
+                    button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
+                td #{applicant.name_formatted}
+                td #{applicant.tenants}   
+                td #{applicant.pets}
+                td #{applicant.vehicles}
+                td #{applicant.seeking.join(", ")}
+                td #{applicant.preferred_location.join(", ")}
+                td #{applicant.bedrooms.join(", ")}
+                td #{applicant.price_range}
+                td #{applicant.interests}
+                td #{applicant.story}
+                td
+                  form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                    button(type="submit" class="btn-edit") Edit
+      else
+        h6 No pending listings found.
       br
       br
-      h5 Archived Listings
-      //- if applicants_list
-      if admin_data
-      table 
-        tr 
-          th Status
-          th Name
-          th Tenants 
-          th Pets
-          th Vehicles
-          th Seeking
-          th Location
-          th Bedrooms
-          th Price Range
-          th Interests
-          th Story
-        //- each applicant in applicants_list
-        each applicant in admin_data.applicants
-          if applicant.status == 'archived'
-            tr 
-              td
-                form(action='/restore' method='POST')
-                  button(name="restore" type="submit" value=applicant._id) Restore
-              td #{applicant.name_formatted}
-              td #{applicant.tenants}   
-              td #{applicant.pets}
-              td #{applicant.vehicles}
-              td #{applicant.seeking.join(", ")}
-              td #{applicant.preferred_location.join(", ")}
-              td #{applicant.bedrooms.join(", ")}
-              td #{applicant.price_range}
-              td #{applicant.interests}
-              td #{applicant.story}
+
+      h5=`Approved Listings (${admin_data.approvedApplicantCount})`
+      if admin_data.approvedApplicantCount > 0
+        table
+          tr 
+            th(style='width: 60px') Status
+            th(style='width: 60px') Name
+            th(style='width: 60px') Tenants 
+            th(style='width: 60px') Pets
+            th(style='width: 60px') Vehicles
+            th Seeking
+            th Location
+            th Bedrooms
+            th Price Range
+            th Interests
+            th Story
+            th(style='width: 40px') Edit
+          //- each applicant in applicants_list
+          each applicant in admin_data.applicants
+            if applicant.status == 'approved'
+              tr 
+                td(style='width: 60px')
+                  form(action='/archive' method='POST')
+                    button(name="archive" type="submit" value=applicant._id) Archive
+                td #{applicant.name_formatted}
+                td #{applicant.tenants}   
+                td #{applicant.pets}
+                td #{applicant.vehicles}
+                td #{applicant.seeking.join(", ")}
+                td #{applicant.preferred_location.join(", ")}
+                td #{applicant.bedrooms.join(", ")}
+                td #{applicant.price_range}
+                td #{applicant.interests}
+                td #{applicant.story}
+                td
+                  form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                    button(type="submit" class="btn-edit") Edit
+      else 
+        h6 No approved listings found.              
+      br
+      br
+      
+      h5=`Archived Listings (${admin_data.archivedApplicantCount})`
+      if admin_data.archivedApplicantCount > 0
+        table 
+          tr 
+            th Status
+            th Name
+            th Tenants 
+            th Pets
+            th Vehicles
+            th Seeking
+            th Location
+            th Bedrooms
+            th Price Range
+            th Interests
+            th Story
+          //- each applicant in applicants_list
+          each applicant in admin_data.applicants
+            if applicant.status == 'archived'
+              tr 
+                td
+                  form(action='/restore' method='POST')
+                    button(name="restore" type="submit" value=applicant._id) Restore
+                td #{applicant.name_formatted}
+                td #{applicant.tenants}   
+                td #{applicant.pets}
+                td #{applicant.vehicles}
+                td #{applicant.seeking.join(", ")}
+                td #{applicant.preferred_location.join(", ")}
+                td #{applicant.bedrooms.join(", ")}
+                td #{applicant.price_range}
+                td #{applicant.interests}
+                td #{applicant.story}
+      else
+        h6 No archived listings found.
       br
       br
   else
