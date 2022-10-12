@@ -101,13 +101,13 @@ app.post(
 
 /* Applicant Routes */
 app.post("/submit-listing", applicant_controller.submit_listing);
+app.post("/connect", applicant_controller.connect);
 
 /* Admin Routes */
 app.get("/admin", dashboard_controller.applicants_list);
 app.post("/approve", dashboard_controller.approve);
 app.post("/archive", dashboard_controller.archive);
 app.post("/restore", dashboard_controller.restore);
-// app.get("/edit/", dashboard_controller.applicant_edit_get);
 app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
 app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
 

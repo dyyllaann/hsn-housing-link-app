@@ -1,4 +1,5 @@
 var Applicant = require("../models/applicant");
+var Message = require("../models/message");
 var async = require("async");
 
 // Display list of all applicants.
@@ -29,6 +30,23 @@ exports.submit_listing = function (req, res, next) {
 		occupation_location: req.body.occupationLocation,
 		story: req.body.story,
 		interests: req.body.interests,
+		status: "pending",
+	}).save((err) => {
+		if (err) {
+			return next(err);
+		}
+		res.redirect("/");
+	});
+};
+
+// POST submit-listing page.
+exports.connect = function (req, res, next) {
+	const message = new Message({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email,
+		date_added: new Date,
+		message: req.body.message,
 		status: "pending",
 	}).save((err) => {
 		if (err) {
