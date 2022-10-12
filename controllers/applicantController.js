@@ -4,7 +4,7 @@ var async = require("async");
 
 // Display list of all applicants.
 exports.applicants_list = function (req, res) {
-	Applicant.find({}, "status firstName lastName name tenants pets_string vehicles seeking preferred_location bedrooms price interests story")
+	Applicant.find({}, "status email firstName lastName name tenants pets_string vehicles seeking preferred_location bedrooms price interests story")
 		.sort({date : -1})
 		.exec(function (err, list_applicants) {
 			if (err) { return next(err); }
@@ -39,10 +39,11 @@ exports.submit_listing = function (req, res, next) {
 	});
 };
 
-// POST submit-listing page.
+// POST connect.
 exports.connect = function (req, res, next) {
 	const message = new Message({
 		applicantId: req.body.applicantId,
+		applicantEmail: req.body.applicantEmail,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,

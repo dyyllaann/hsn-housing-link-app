@@ -22,19 +22,14 @@ block content
             if message.status == 'pending'
               tr 
                 td 
-                  form(action='/#' method='POST')
-                    button(name="approve" type="submit" /*value=applicant._id*/ style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
-                  form(action='/#' method='POST')
+                  form(action='#' method='POST')
                     button(name="archive" type="submit" /*value=applicant._id*/ style="background-color: #ff7477; width: 100%;") Archive
                 td #{message.firstName}
                 td #{message.lastName}
                 td #{message.email}
                 td #{message.message}
                 td
-                  //- form(action=`/admin/users/${applicant.id}/edit` method='GET')
-                  form(action=`#` method='GET')
-                    button(type="submit" class="btn-edit") Edit
-                //- td #{message.status}
+                  a(href=`mailto:${message.applicantEmail}?subject=HSN Housing Link: ${message.firstName} wants to connect with you!&body=${message.firstName} says:%0D%0A%0D%0A"${message.message}"` target='_blank') Approve
       br
       h5 Pending Listings
       //- if applicants_list

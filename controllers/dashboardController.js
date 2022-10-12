@@ -18,13 +18,13 @@ exports.admin_data = function (req, res) {
 		{
 			messages: function (callback) {
 				Message
-					.find({}, "_id name firstName lastName email message status")
+					.find({}, "_id applicantEmail name firstName lastName email message status")
 					.sort({date : -1})
 					.exec(callback)
 			},
 			applicants: function (callback) {
 				Applicant
-					.find({}, "_id name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status")
+					.find({}, "_id email name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status")
 					.sort({date : -1})
 					.exec(callback)
 			},
