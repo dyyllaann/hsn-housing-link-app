@@ -2,16 +2,6 @@ var Applicant = require("../models/applicant");
 var Message = require("../models/message");
 var async = require("async");
 
-// Display list of all applicants.
-exports.applicants_list = function (req, res) {
-	Applicant.find({}, "_id name firstName lastName tenants pets_string vehicles seeking preferred_location bedrooms price interests story status")
-		.sort({date : -1})
-		.exec(function (err, list_applicants) {
-			if (err) { return next(err); }
-			res.render('admin_dashboard', { title: 'Admin Dashboard', applicants_list: list_applicants, user: req.user });
-		}); 
-};
-
 // Display list of all admin data (messages and applicants).
 exports.admin_data = function (req, res) {
 	async.parallel(
@@ -25,7 +15,9 @@ exports.admin_data = function (req, res) {
 					.exec(callback);
 			},
 			pendingMessageCount: function (callback) {
-				Message.countDocuments({ status: "pending" }).exec(callback);
+				Message
+					.countDocuments({ status: "pending" })
+					.exec(callback);
 			},
 			applicants: function (callback) {
 				Applicant.find(
@@ -36,13 +28,19 @@ exports.admin_data = function (req, res) {
 					.exec(callback);
 			},
 			pendingApplicantCount: function (callback) {
-				Applicant.countDocuments({ status: "pending" }).exec(callback);
+				Applicant
+					.countDocuments({ status: "pending" })
+					.exec(callback);
 			},
 			approvedApplicantCount: function (callback) {
-				Applicant.countDocuments({ status: "approved" }).exec(callback);
+				Applicant
+					.countDocuments({ status: "approved" })
+					.exec(callback);
 			},
 			archivedApplicantCount: function (callback) {
-				Applicant.countDocuments({ status: "archived" }).exec(callback);
+				Applicant
+					.countDocuments({ status: "archived" })
+					.exec(callback);
 			},
 		},
 		function (err, admin_data) {
