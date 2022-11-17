@@ -22,7 +22,7 @@ exports.admin_data = function (req, res) {
 			applicants: function (callback) {
 				Applicant.find(
 					{},
-					"_id email name firstName lastName tenants pets_string seeking preferred_location bedrooms price interests story status"
+					"_id email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
 				)
 					.sort({ date: -1 })
 					.exec(callback);

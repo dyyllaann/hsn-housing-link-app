@@ -4,7 +4,7 @@ var async = require("async");
 
 // Display list of all applicants.
 exports.applicants_list = function (req, res) {
-	Applicant.find({}, "status email firstName lastName name tenants pets_string seeking preferred_location bedrooms price interests story")
+	Applicant.find({}, "status email firstName lastName name preferred_name tenants pets_string seeking preferred_location bedrooms price interests story")
 		.sort({date : -1})
 		.exec(function (err, list_applicants) {
 			if (err) { return next(err); }
@@ -17,6 +17,7 @@ exports.submit_listing = function (req, res, next) {
 	const applicant = new Applicant({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
+		preferred_name: req.body.preferredName,
 		email: req.body.email,
 		date_added: new Date,
 		tenants: req.body.tenants,

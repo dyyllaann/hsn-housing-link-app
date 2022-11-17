@@ -6,6 +6,7 @@ var ApplicantSchema = new Schema({
 	firstName: { type: String },
 	lastName: { type: String },
 	name: { type: String },
+	preferred_name: { type: String },
 	email: { type: String },
 	date_added: { type: Date },
 	tenants: { type: String },
