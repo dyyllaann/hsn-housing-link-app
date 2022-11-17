@@ -28,7 +28,7 @@ block content
                 td #{message.email}
                 td #{message.message}
                 td
-                  a(href=`mailto:${message.applicantEmail}?subject=HSN Housing Link: ${message.firstName} wants to connect with you!&body=${message.firstName} says:%0D%0A%0D%0A"${message.message}"` target='_blank') Approve
+                  a(href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank') Approve
       else 
         h6 No pending messages found.
       br
@@ -41,7 +41,6 @@ block content
             th(style='width: 60px') Name
             th(style='width: 60px') Tenants 
             th(style='width: 60px') Pets
-            th(style='width: 60px') Vehicles
             th Seeking
             th Location
             th Bedrooms
@@ -49,7 +48,6 @@ block content
             th Interests
             th Story
             th(style='width: 40px') Edit
-          //- each applicant in applicants_list
           each applicant in admin_data.applicants
             if applicant.status == 'pending'
               tr 
@@ -61,7 +59,6 @@ block content
                 td #{applicant.name_formatted}
                 td #{applicant.tenants}   
                 td #{applicant.pets}
-                td #{applicant.vehicles}
                 td #{applicant.seeking.join(", ")}
                 td #{applicant.preferred_location.join(", ")}
                 td #{applicant.bedrooms.join(", ")}
@@ -84,7 +81,6 @@ block content
             th(style='width: 60px') Name
             th(style='width: 60px') Tenants 
             th(style='width: 60px') Pets
-            th(style='width: 60px') Vehicles
             th Seeking
             th Location
             th Bedrooms
@@ -92,7 +88,6 @@ block content
             th Interests
             th Story
             th(style='width: 40px') Edit
-          //- each applicant in applicants_list
           each applicant in admin_data.applicants
             if applicant.status == 'approved'
               tr 
@@ -102,7 +97,6 @@ block content
                 td #{applicant.name_formatted}
                 td #{applicant.tenants}   
                 td #{applicant.pets}
-                td #{applicant.vehicles}
                 td #{applicant.seeking.join(", ")}
                 td #{applicant.preferred_location.join(", ")}
                 td #{applicant.bedrooms.join(", ")}
@@ -125,7 +119,6 @@ block content
             th Name
             th Tenants 
             th Pets
-            th Vehicles
             th Seeking
             th Location
             th Bedrooms
@@ -142,7 +135,6 @@ block content
                 td #{applicant.name_formatted}
                 td #{applicant.tenants}   
                 td #{applicant.pets}
-                td #{applicant.vehicles}
                 td #{applicant.seeking.join(", ")}
                 td #{applicant.preferred_location.join(", ")}
                 td #{applicant.bedrooms.join(", ")}

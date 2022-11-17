@@ -40,8 +40,8 @@ h1 {
 }
 
 .container-fluid {
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .container-xl {
@@ -84,7 +84,7 @@ h1 {
 
 .applicant-grid {
   height: 100%;
-  width: 100%;
+  margin: 0 30px;
   display: grid;
   column-gap: 30px;
   row-gap: 30px;
@@ -141,6 +141,40 @@ h1 {
 div.applicant-form {
   display: block;
   width: 100vw;
+}
+
+.header {
+  margin: -30px 0 0 0;
+  background-color: #6a6484;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.menu {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+.menu-item > a {
+  font-size: x-large;
+  text-decoration: none;
+  padding: 30px;
+  color: #eaeaea;
+}
+
+.search-item {
+  font-size: xx-large;
+}
+
+.logo > img {
+  margin: 10px 30px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .hero {

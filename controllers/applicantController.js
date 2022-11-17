@@ -4,7 +4,7 @@ var async = require("async");
 
 // Display list of all applicants.
 exports.applicants_list = function (req, res) {
-	Applicant.find({}, "status email firstName lastName name tenants pets_string vehicles seeking preferred_location bedrooms price interests story")
+	Applicant.find({}, "status email firstName lastName name tenants pets_string seeking preferred_location bedrooms price interests story")
 		.sort({date : -1})
 		.exec(function (err, list_applicants) {
 			if (err) { return next(err); }
@@ -26,7 +26,6 @@ exports.submit_listing = function (req, res, next) {
 		price: {"min": req.body.priceRange_min, "max": req.body.priceRange_max},
 		// pets: { type: Array }, // Currently using string instead of array or object
 		pets_string: req.body.pets,
-		vehicles: req.body.vehicles,
 		occupation_location: req.body.occupationLocation,
 		story: req.body.story,
 		interests: req.body.interests,

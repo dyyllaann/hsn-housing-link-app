@@ -18,7 +18,6 @@ var ApplicantSchema = new Schema({
 	},
 	pets: { type: Array },
 	pets_string: { type: String },
-	vehicles: { type: String },
 	occupation_location: { type: String },
 	story: { type: String },
 	interests: { type: String },

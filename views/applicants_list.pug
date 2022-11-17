@@ -28,6 +28,25 @@ block content
       }
     }
   
+  div(class='row')
+    div(class='header')
+      div(class='logo')
+        img(src='https://housingsolutionsnetwork.org/wp-content/uploads/2019/09/cropped-JCHSN_logo1.png')
+      div(class='menu')
+        div(class='menu-item')
+          a(href='#') Share Our Spaces
+        div(class='menu-item')
+          a(href='#') Learn
+        div(class='menu-item')
+          a(href='#') Engage
+        div(class='menu-item')
+          a(href='#') Build
+        div(class='menu-item')
+          a(href='#') About
+        div(class='menu-item')
+          a(href='#') Donate
+        div(class='menu-item')
+          a(href='#' class='search-item') ⚲
   //- div(class='row')
     div(class='hero')
       div(class='hero-left')
@@ -86,8 +105,6 @@ block content
               p #{applicant.tenants} 
               span(class='applicant-card__title') Pets:  
               p #{applicant.pets_string} 
-              span(class='applicant-card__title') Vehicles: 
-              p #{applicant.vehicles} 
             span(class='applicant-card__title') Seeking: 
               p= applicant.seeking.join(", ")
             span(class='applicant-card__title') Location: 
@@ -146,10 +163,6 @@ block content
             label(for="pets") Pets
             input(class='listing__input' type="text" name="pets" id="pets" placeholder="Pets" autocorrect="off" autocapitalize="off")
           
-          div
-            label(for="vehicles") Vehicles
-            input(class='listing__input' type="number" name="vehicles" id="vehicles" placeholder="Vehicles")
-        
         div
           label(for="occupationLocation") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
           input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation1" value="Jefferson County")

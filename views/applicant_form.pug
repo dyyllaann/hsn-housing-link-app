@@ -1,115 +1,111 @@
 extends layout
 
 block content
-  if user
-    div(class='row')      
-      div(class='applicant-form')
-        h1(class='listing__form__title') Edit a Listing
+  //- if user
+  div(class='row')      
+    div(class='applicant-form')
+      h1(class='listing__form__title') Edit a Listing
 
-        form(class='listing__form' action=`/admin/users/${applicant.id}/post` method="POST")
-          //- div
-          //-   label(for="email") Email
-          //-   input(class='listing__input' type="text" name="email" id="email" placeholder=applicant.email autocorrect="off" autocapitalize="off")
-          //- Email parameter not currently saved in db
+      form(class='listing__form' action=`/admin/users/${applicant.id}/post` method="POST")
+        //- div
+        //-   label(for="email") Email
+        //-   input(class='listing__input' type="text" name="email" id="email" placeholder=applicant.email autocorrect="off" autocapitalize="off")
+        //- Email parameter not currently saved in db
+        div
+          label(for="firstName") Name
+          div(class="listing__form__name-section")
+            if applicant.firstName
+              input(class='listing__input' type="text" name="firstName" id="firstName" value=applicant.firstName readonly disabled)
+              input(class='listing__input' type="text" name="lastName" id="lastName" value=applicant.lastName readonly disabled)
+            else
+              input(class='listing__input' type="text" name="name" id="name" value=applicant.name readonly disabled)
+        
+        //- div
+        //-   label(for="occupation") Occupation
+        //-   input(class='listing__input' type="text" name="occupation" id="occupation" placeholder="Your Occupation" autocorrect="off" autocapitalize="on")
+        
+        div(class='listing__form__section')
           div
-            label(for="firstName") Name
-            div(class="listing__form__name-section")
-              if applicant.firstName
-                input(class='listing__input' type="text" name="firstName" id="firstName" value=applicant.firstName readonly disabled)
-                input(class='listing__input' type="text" name="lastName" id="lastName" value=applicant.lastName readonly disabled)
-              else
-                input(class='listing__input' type="text" name="name" id="name" value=applicant.name readonly disabled)
-          
-          //- div
-          //-   label(for="occupation") Occupation
-          //-   input(class='listing__input' type="text" name="occupation" id="occupation" placeholder="Your Occupation" autocorrect="off" autocapitalize="on")
-          
-          div(class='listing__form__section')
-            div
-              label(for="tenants") Tenants
-              input(class='listing__input' type="number" name="tenants" id="tenants" value=applicant.tenants readonly disabled)
-            
-            div
-              label(for="bedrooms") Bedrooms
-              input(class='listing__input' type="number" name="bedrooms" id="bedrooms" value=applicant.bedrooms readonly disabled)
-          
-            div
-              label(for="pets") Pets
-              input(class='listing__input' type="text" name="pets" id="pets" value=applicant.pets_string readonly disabled)
-            
-            div
-              label(for="vehicles") Vehicles
-              input(class='listing__input' type="number" name="vehicles" id="vehicles" value=applicant.vehicles readonly disabled)
-          
-          //- div
-          //-   label(for="occupationLocation") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
-          //-   input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation1" value="Jefferson County")
-          //-   label(for="occupationLocation") Yes, my employer or small business serves Jefferson County
-          //-   br
-          //-   input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation2" value=null) 
-          //-   label(for="occupationLocation") No
-
-          //- div
-          //-   label(for="seeking") What best describes what you're looking for? A private rental, home-share, temporary residence, or a place to buy?
-          //-   br
-          //-   div
-          //-     input(class='listing__input' name="seeking" id="rental" value="Rental" type="checkbox") 
-          //-     label(for="rental") Rental
-          //-   div
-          //-     input(class='listing__input' name="seeking" id="homeShare" value="Home-Share" type="checkbox") 
-          //-     label(for="homeShare") Home-Share
-          //-   div
-          //-     input(class='listing__input' name="seeking" id="temporary" value="Temporary Residence (1-3 months)" type="checkbox") 
-          //-     label(for="temporary") Temporary Residence (1-3 months)            
-          //-   div
-          //-     input(class='listing__input' name="seeking" id="landLease" value="Land lease for RV or tiny house on wheels" type="checkbox") 
-          //-     label(for="landLease") Land lease for RV or tiny house on wheels
-          //-   div
-          //-     input(class='listing__input' name="seeking" id="purchase" value="Purchase" type="checkbox") 
-          //-     label(for="purchase") Purchase
-          
-          //- div
-          //-   label(for="location") Preferred Living Location
-          //-   br
-          //-   div
-          //-     input(class='listing__input' name="location" id="port-townsend" value="Port Townsend" type="checkbox") 
-          //-     label(for="port-townsend") Port Townsend
-          //-   div
-          //-     input(class='listing__input' name="location" id="port-hadlock" value="Port Hadlock" type="checkbox") 
-          //-     label(for="port-hadlock") Port Hadlock
-          //-   div
-          //-     input(class='listing__input' name="location" id="chimacum" value="Chimacum" type="checkbox") 
-          //-     label(for="chimacum") Chimacum
-          //-   div
-          //-     input(class='listing__input' name="location" id="port-ludlow" value="Port Ludlow" type="checkbox") 
-          //-     label(for="port-ludlow") Port Ludlow
-          //-   div
-          //-     input(class='listing__input' name="location" id="quilcene" value="Quilcene" type="checkbox") 
-          //-     label(for="quilcene") Quilcene
-          //-   div
-          //-     input(class='listing__input' name="location" id="anywhere" value="Anywhere in Jefferson County" type="checkbox") 
-          //-     label(for="anywhere") Anywhere in East Jefferson County
-
-          //- div(class='listing__form__section')
-          //-   label(for="price-range") Price Range (either a range for monthly rent or purchase price range)
-
-          //-   br
-          //-   div(style="min-width: 49.5%; margin-right: 1%")
-          //-     input(class='listing__input' type="number" name="priceRange_min" placeholder="Minimum")
-            
-          //-   div(style="min-width: 49.5%; margin-right: 0")
-          //-     input(class='listing__input' type="number" name="priceRange_max" placeholder="Maximum")
-              
-          div
-            label(for="interests") Interests
-            input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="on" autocapitalize="on" value=applicant.interests)
+            label(for="tenants") Tenants
+            input(class='listing__input' type="number" name="tenants" id="tenants" value=applicant.tenants readonly disabled)
           
           div
-            label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 250 characters.
-            textarea(class='listing__input' rows="4" maxlength="250" type="text" name="story" id="story" placeholder="Your answer" autocorrect="on" autocapitalize="on")
-              | #{applicant.story}   
+            label(for="bedrooms") Bedrooms
+            input(class='listing__input' type="number" name="bedrooms" id="bedrooms" value=applicant.bedrooms readonly disabled)
+        
+          div
+            label(for="pets") Pets
+            input(class='listing__input' type="text" name="pets" id="pets" value=applicant.pets_string readonly disabled)
           
-          p
-            input(type="submit" class="listing__input submit btn" value="Submit")
-  else 
-    h1 You must be logged in to view this page.
+        //- div
+        //-   label(for="occupationLocation") Do you work in Jefferson County? Housing Link Profiles will be prioritized for individuals and families who want to live and work within the county.
+        //-   input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation1" value="Jefferson County")
+        //-   label(for="occupationLocation") Yes, my employer or small business serves Jefferson County
+        //-   br
+        //-   input(class='listing__input' type="radio" name="occupationLocation" id="occupationLocation2" value=null) 
+        //-   label(for="occupationLocation") No
+
+        //- div
+        //-   label(for="seeking") What best describes what you're looking for? A private rental, home-share, temporary residence, or a place to buy?
+        //-   br
+        //-   div
+        //-     input(class='listing__input' name="seeking" id="rental" value="Rental" type="checkbox") 
+        //-     label(for="rental") Rental
+        //-   div
+        //-     input(class='listing__input' name="seeking" id="homeShare" value="Home-Share" type="checkbox") 
+        //-     label(for="homeShare") Home-Share
+        //-   div
+        //-     input(class='listing__input' name="seeking" id="temporary" value="Temporary Residence (1-3 months)" type="checkbox") 
+        //-     label(for="temporary") Temporary Residence (1-3 months)            
+        //-   div
+        //-     input(class='listing__input' name="seeking" id="landLease" value="Land lease for RV or tiny house on wheels" type="checkbox") 
+        //-     label(for="landLease") Land lease for RV or tiny house on wheels
+        //-   div
+        //-     input(class='listing__input' name="seeking" id="purchase" value="Purchase" type="checkbox") 
+        //-     label(for="purchase") Purchase
+        
+        //- div
+        //-   label(for="location") Preferred Living Location
+        //-   br
+        //-   div
+        //-     input(class='listing__input' name="location" id="port-townsend" value="Port Townsend" type="checkbox") 
+        //-     label(for="port-townsend") Port Townsend
+        //-   div
+        //-     input(class='listing__input' name="location" id="port-hadlock" value="Port Hadlock" type="checkbox") 
+        //-     label(for="port-hadlock") Port Hadlock
+        //-   div
+        //-     input(class='listing__input' name="location" id="chimacum" value="Chimacum" type="checkbox") 
+        //-     label(for="chimacum") Chimacum
+        //-   div
+        //-     input(class='listing__input' name="location" id="port-ludlow" value="Port Ludlow" type="checkbox") 
+        //-     label(for="port-ludlow") Port Ludlow
+        //-   div
+        //-     input(class='listing__input' name="location" id="quilcene" value="Quilcene" type="checkbox") 
+        //-     label(for="quilcene") Quilcene
+        //-   div
+        //-     input(class='listing__input' name="location" id="anywhere" value="Anywhere in Jefferson County" type="checkbox") 
+        //-     label(for="anywhere") Anywhere in East Jefferson County
+
+        //- div(class='listing__form__section')
+        //-   label(for="price-range") Price Range (either a range for monthly rent or purchase price range)
+
+        //-   br
+        //-   div(style="min-width: 49.5%; margin-right: 1%")
+        //-     input(class='listing__input' type="number" name="priceRange_min" placeholder="Minimum")
+          
+        //-   div(style="min-width: 49.5%; margin-right: 0")
+        //-     input(class='listing__input' type="number" name="priceRange_max" placeholder="Maximum")
+            
+        div
+          label(for="interests") Interests
+          input(class='listing__input' type="text" name="interests" id="interests" placeholder="Interests" autocorrect="on" autocapitalize="on" value=applicant.interests)
+        
+        div
+          label(for="story") Short Story: What do you want anonymous potential home providers to know about you? Consider what the most important aspects of your story are as they relate to housing. Your 'story' is limited to 250 characters.
+          textarea(class='listing__input' rows="4" maxlength="250" type="text" name="story" id="story" placeholder="Your answer" autocorrect="on" autocapitalize="on")
+            | #{applicant.story}   
+        
+        p
+          input(type="submit" class="listing__input submit btn" value="Submit")
+  //- else 
+  //-   h1 You must be logged in to view this page.
