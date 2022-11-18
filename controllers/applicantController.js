@@ -35,7 +35,7 @@ exports.submit_listing = function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		res.redirect("/");
+		res.render("listing_confirmation");
 	});
 };
 

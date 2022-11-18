@@ -360,3 +360,7 @@ div.applicant-form {
   display: block;
   margin-bottom: 50px;
 }
+
+#redirect-message {
+  text-align: center;
+}
