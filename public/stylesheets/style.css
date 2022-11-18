@@ -168,7 +168,8 @@ div.applicant-form {
 }
 
 .search-item {
-  font-size: xx-large;
+  font-size: x-large;
+  transform: rotate(45deg);
 }
 
 .logo > img {
