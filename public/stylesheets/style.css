@@ -62,17 +62,19 @@ h1 {
 .admin-dashboard table, th, td {
   overflow: scroll;
   border: 1px solid #bbb;
-  border-collapse: collapse;
-  padding: 5px;
 }
 
-.admin-dashboard tr:nth-child(even) {
+.admin-dashboard tr {
+  border-radius: 10px;
+}
+
+/* .admin-dashboard tr:nth-child(even) {
   background-color: #f2fafa;
 }
 
 .admin-dashboard tr:nth-child(odd) {
   background-color: #fbfbfb;
-}
+} */
 
 .admin-dashboard__approve-btn {
   color: #218021
@@ -80,6 +82,10 @@ h1 {
 
 .admin-dashboard__remove-btn {
   color: #961a1a
+}
+
+.admin-dashboard__archive-btn {
+  color: #8d8d8d
 }
 
 .applicant-grid {
@@ -363,4 +369,34 @@ div.applicant-form {
 
 #redirect-message {
   text-align: center;
+}
+
+table {
+  width: 80%;
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 5px;
+  font-size: 90%;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  border: 1px solid #e0e0d0;
+}
+
+th {
+  font-size: 95%;
+  width: 25%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e0e0d0;
+  color: #ababab;
+}
+
+tr, td {
+  font-family: "Helvetica", Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 105%;
+  padding: 18px 10px;
+  border: none;
 }

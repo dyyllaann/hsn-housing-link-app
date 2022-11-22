@@ -16,8 +16,9 @@ const LocalStrategy = require("passport-local").Strategy;
 // var helmet = require('helmet');
 
 /* Models */
-var User = require("./models/user.js");
+const User = require("./models/user.js");
 const Applicant = require('./models/applicant');
+const Message = require('./models/message');
 
 /* Controllers */
 const applicant_controller = require('./controllers/applicantController');
@@ -111,5 +112,9 @@ app.post("/archive", dashboard_controller.archive);
 app.post("/restore", dashboard_controller.restore);
 app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
 app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
+
+/* pending */
+app.post("/admin/messages/approve", dashboard_controller.messageApprove);
+app.post("/admin/messages/archive", dashboard_controller.messageArchive);
 
 module.exports = app;

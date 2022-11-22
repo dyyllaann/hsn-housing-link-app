@@ -19,6 +19,11 @@ exports.admin_data = function (req, res) {
 					.countDocuments({ status: "pending" })
 					.exec(callback);
 			},
+			archivedMessageCount: function (callback) {
+				Message
+					.countDocuments({ status: "pending" })
+					.exec(callback);
+			},
 			applicants: function (callback) {
 				Applicant.find(
 					{},
@@ -140,3 +145,37 @@ exports.restore = function (req, res, next) {
 		}
 	)
 };
+
+/* pending message approve / archive / routes */
+
+// Message approve POST
+exports.messageApprove = function (req, res, next) {
+	Message.findByIdAndUpdate(
+		req.body.approve,
+		{ status: "approved" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Approved Message : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+};
+
+// Message archive POST
+exports.messageArchive = function (req, res, next) {
+	Message.findByIdAndUpdate(
+		req.body.archive,
+		{ status: "archived" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Archived Message : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+}
