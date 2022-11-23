@@ -9,7 +9,7 @@ exports.admin_data = function (req, res) {
 			messages: function (callback) {
 				Message.find(
 					{},
-					"_id applicantEmail name firstName lastName email message status"
+					"_id applicantEmail date_added name firstName lastName email message status"
 				)
 					.sort({ date: -1 })
 					.exec(callback);
@@ -27,7 +27,7 @@ exports.admin_data = function (req, res) {
 			applicants: function (callback) {
 				Applicant.find(
 					{},
-					"_id email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
+					"_id date_added email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
 				)
 					.sort({ date: -1 })
 					.exec(callback);

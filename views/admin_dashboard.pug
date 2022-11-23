@@ -11,27 +11,30 @@ block content
       if admin_data.pendingMessageCount > 0
         table 
           tr
-            th(style='width: 7%; max-width: 150px;') Status
+            th(style='width: 150px;') Status
             th(style='width: 5%;') Date 
             th(style='width: 11%;') First Name 
             th(style='width: 11%;') Last Name
             th(style='width: 11%;') Email
+            th(style='width: 11%l') Recipient Email
             th Message
           each message in admin_data.messages
             if message.status == 'pending'
               tr 
-                td(title='Approve' style='border: none; display: flex; flex-direction: row; justify-content: space-between; border-right: 1px solid #d2d2d0')
-                  a(href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
+                td.status-column
+                  //- a(href='#' target='_blank')
+                  a(title='Approve' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
                     span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
                   form(title='Archive' action='/admin/messages/archive'  method='POST')
                     button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
                       span(class="material-symbols-rounded") archive
                   a(title='Edit' href='#')
                     span(class="material-symbols-rounded") edit_note
-                td 11/20/2022
+                td #{message.date_added.toLocaleDateString()}
                 td #{message.firstName}
                 td #{message.lastName}
                 td #{message.email}
+                td #{message.applicantEmail}
                 td #{message.message}             
       else 
         h6 No pending messages found.
@@ -39,37 +42,40 @@ block content
       if admin_data.pendingApplicantCount > 0
         table 
           tr 
-            th(style='width: 60px') Status
-            th(style='width: 60px') Name
-            th(style='width: 60px') Tenants 
-            th(style='width: 60px') Pets
-            th Seeking
-            th Location
-            th Bedrooms
-            th(style='width: 100px') Price Range
-            th Interests
+            th(style='width: 150px;') Status
+            th(style='width: 5%') Date
+            th(style='width: 5%') Name
+            th(style='width: 5%') Tenants 
+            th(style='width: 5%') Seeking
+            th(style='width: 5%') Location
+            th(style="width: 5%") Bedrooms
+            th(style='width: 5%') Price Range
             th Story
-            th(style='width: 40px') Edit
           each applicant in admin_data.applicants
             if applicant.status == 'pending'
               tr 
-                td
+                //- td
                   form(action='/approve' method='POST')
                     button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
                   form(action='/archive' method='POST')
                     button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
+                td.status-column
+                  a(href='#' target='_blank')
+                    span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
+                  form(title='Archive' action='#'  method='POST')
+                    button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
+                      span(class="material-symbols-rounded") archive
+                  form(title='Edit' action=`#` method='GET')
+                    button(type="submit" class="btn-edit")
+                      span(class="material-symbols-rounded") edit_note
+                td #{applicant.date_added.toLocaleDateString()}   
                 td #{applicant.name_formatted}
                 td #{applicant.tenants}   
-                td #{applicant.pets}
                 td #{applicant.seeking.join(", ")}
                 td #{applicant.preferred_location.join(", ")}
                 td #{applicant.bedrooms.join(", ")}
                 td #{applicant.price_range}
-                td #{applicant.interests}
                 td #{applicant.story}
-                td
-                  form(action=`/admin/users/${applicant.id}/edit` method='GET')
-                    button(type="submit" class="btn-edit") Edit
       else
         h6 No pending listings found.
       br
