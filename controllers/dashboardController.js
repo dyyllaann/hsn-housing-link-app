@@ -25,13 +25,19 @@ exports.admin_data = function (req, res) {
 					.exec(callback);
 			},
 			applicants: function (callback) {
-				Applicant.find(
-					{},
-					"_id date_added email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
-				)
+				Applicant
+					.find(
+						{},
+						"_id date_added email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
+					)
 					.sort({ date: -1 })
 					.exec(callback);
 			},
+			// applicantEmail: function (callback) {
+			// 	Applicant
+			// 		.findById(_id, 'email')
+			// 		.exec(callback);
+			// },
 			pendingApplicantCount: function (callback) {
 				Applicant
 					.countDocuments({ status: "pending" })
@@ -145,8 +151,6 @@ exports.restore = function (req, res, next) {
 		}
 	)
 };
-
-/* pending message approve / archive / routes */
 
 // Message approve POST
 exports.messageApprove = function (req, res, next) {

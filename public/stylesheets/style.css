@@ -17,6 +17,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
@@ -407,4 +412,14 @@ tr, td {
   flex-direction: row; 
   justify-content: space-between; 
   border-right: 1px solid #d2d2d0;
+}
+
+.disabledLink {
+  cursor: default;
+  color: #aaa;
+}
+
+.disabledLink:hover {
+  cursor: default;
+  color: #aaa;
 }
