@@ -1,4 +1,4 @@
-body {
+.body {
   padding: 30px;
   font-size: 16px;
   line-height: 1.2;
@@ -27,18 +27,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* a {
-  text-decoration: none !important;
-}
-
-a:hover {
-  color:#daa900 !important;
-}
-
-ul {
-  list-style: none;
-} */
-
 h1 {
   font-size: 1.5em;
   text-align: center;
@@ -53,16 +41,47 @@ h1 {
   max-width: none;
 }
 
-.admin-dashboard {
+.dashboard {
   font-size: 0.8em;
   line-height: 1.2;
   overflow: hidden;
   table-layout: fixed;
 }
 
-.admin-dashboard > table {
-  width: 100%;
+.dashboard .section .table {
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 5px;
+  font-size: 90%;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  border: 1px solid #e0e0d0;
 }
+
+.dashboard .section .table tr, 
+.dashboard .section .table td {
+  font-family: "Helvetica", Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 105%;
+  padding: 18px 10px;
+  border: none;
+}
+
+.dashboard .section .table .column--status {
+  width: 150px;
+}
+
+/* .admin-dashboard {
+  font-size: 0.8em;
+  line-height: 1.2;
+  overflow: hidden;
+  table-layout: fixed;
+} */
+
+/* .admin-dashboard > table {
+  width: 100%;
+} */
 
 .admin-dashboard table, th, td {
   overflow: scroll;
@@ -77,7 +96,7 @@ h1 {
   color: #218021
 }
 
-.dashboard .btn .approve {
+.dashboard-btn .approve {
   color: #218021
 }
 
@@ -183,36 +202,6 @@ div.applicant-form {
   margin: 10px 30px;
   max-width: 100px;
   max-height: 100px;
-}
-
-.hero {
-  height: 60vh;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-
-.hero > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 50vw;
-  padding: 60px;
-}
-
-.hero-left {
-  background-color: #7aa852;
-  color: #ffffff;
-}
-
-.hero-right {
-  background-color: #ffffff;
-  color: #7aa852;
-}
-
-.hero-btn {
-  background-color: #add8e6;
 }
 
 .connect-btn {
@@ -337,7 +326,7 @@ div.applicant-form {
   height: auto;
 }
 
-.login {
+.footer {
   margin-top: 20px;
   text-align: center;
 }
@@ -372,17 +361,6 @@ div.applicant-form {
   text-align: center;
 }
 
-table {
-  margin: 40px auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 5px;
-  font-size: 90%;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  border: 1px solid #e0e0d0;
-}
-
 th {
   font-size: 95%;
   /* width: 25%; */
@@ -393,7 +371,14 @@ th {
   color: #ababab;
 }
 
-tr, td {
+/* tr, td {
+  font-family: "Helvetica", Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 105%;
+  padding: 18px 10px;
+  border: none;
+} */
+td {
   font-family: "Helvetica", Helvetica, sans-serif;
   font-weight: 200;
   font-size: 105%;

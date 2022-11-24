@@ -1,228 +1,243 @@
 extends layout
 
 block content
-  h1 Admin Dashboard
-  a(href="/" class="bottom-nav") ⬅ Home
-  br
-  br
-  if user
-    div(class='admin-dashboard')
-      h5=`Pending Listings (${admin_data.pendingApplicantCount})`
-      if admin_data.pendingApplicantCount > 0
-        table 
-          tr 
-            th(style='width: 150px;') Status
-            th(style='width: 5%') Date
-            th(style='width: 5%') Name
-            th(style='width: 5%') Tenants 
-            th(style='width: 5%') Seeking
-            th(style='width: 5%') Location
-            th(style="width: 5%") Bedrooms
-            th(style='width: 5%') Price Range
-            th Story
-          each applicant in admin_data.applicants
-            if applicant.status == 'pending'
+  div.container-xl
+    h1 Admin Dashboard
+    a(href="/" class="bottom-nav") ⬅ Home
+    br
+    br
+    if user
+      div.dashboard
+        // Pending Listings
+        div.section
+          h5=`Pending Listings (${admin_data.pendingApplicantCount})`
+          if admin_data.pendingApplicantCount > 0
+            table.table
+              tr
+                th(style='width: 150px;') Status
+                th(style='width: 5%') Date
+                th(style='width: 5%') Name
+                th(style='width: 5%') Tenants 
+                th(style='width: 5%') Seeking
+                th(style='width: 5%') Location
+                th(style="width: 5%") Bedrooms
+                th(style='width: 5%') Price Range
+                th(style='width: 300px;') Story
+              each applicant in admin_data.applicants
+                if applicant.status == 'pending'
+                  tr 
+                    //- td
+                      form(action='/approve' method='POST')
+                        button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
+                      form(action='/archive' method='POST')
+                        button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
+                    td.status-column
+                      form(action='/approve' method='POST')
+                        button(name="approve" type="submit" value=applicant._id)
+                          span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
+                      form(title='Archive' action='#'  method='POST')
+                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
+                          span(class="material-symbols-rounded") archive
+                      form(title='Edit' action=`#` method='GET')
+                        button(type="submit" class="btn-edit")
+                          span(class="material-symbols-rounded") edit_note
+                    td #{applicant.date_added.toLocaleDateString()}   
+                    td #{applicant.name_formatted}
+                    td #{applicant.tenants}   
+                    td #{applicant.seeking.join(", ")}
+                    td #{applicant.preferred_location.join(", ")}
+                    td #{applicant.bedrooms.join(", ")}
+                    td #{applicant.price_range}
+                    td #{applicant.story}
+          else
+            h6 No pending listings found.
+          br
+        
+        // Pending Messages
+        div.section
+          h5=`Pending Messages (${admin_data.pendingMessageCount})`
+          if admin_data.pendingMessageCount > 0
+            table.table
+              tr
+                th.column--status Status
+                th(style='width: 5%;') Date 
+                th(style='width: 11%;') First Name 
+                th(style='width: 11%;') Last Name
+                th(style='width: 11%;') Email
+                th(style='width: 11%;') Recipient Email
+                th Message
+              each message in admin_data.messages
+                if message.status == 'pending'
+                  tr 
+                    td.status-column
+                      form(title='Approve' action='/admin/messages/approve' method='POST')
+                          button(class="dashboard-btn" name="messageApprove" type="submit" value=message._id)
+                            //- span.admin-dashboard__approve-btn.material-symbols-rounded check_circle
+                            span(class="approve material-symbols-rounded") check_circle
+                      form(title='Archive' action='/admin/messages/archive'  method='POST')
+                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
+                          span.material-symbols-rounded archive
+                      a(title='Send via Email' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hello! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
+                        span.material-symbols-rounded forward_to_inbox
+                    td #{message.date_added.toLocaleDateString()}
+                    td #{message.firstName}
+                    td #{message.lastName}
+                    td #{message.email}
+                    td #{message.applicantEmail}
+                    td #{message.message}             
+          else 
+            h6 No pending messages found.
+          br
+        
+        // Approved Listings
+        div.section
+          h5=`Approved Listings (${admin_data.approvedApplicantCount})`
+          if admin_data.approvedApplicantCount > 0
+            table.table
               tr 
-                //- td
-                  form(action='/approve' method='POST')
-                    button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
-                  form(action='/archive' method='POST')
-                    button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
-                td.status-column
-                  form(action='/approve' method='POST')
-                    button(name="approve" type="submit" value=applicant._id)
-                      span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
-                  form(title='Archive' action='#'  method='POST')
-                    button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
-                      span(class="material-symbols-rounded") archive
-                  form(title='Edit' action=`#` method='GET')
-                    button(type="submit" class="btn-edit")
-                      span(class="material-symbols-rounded") edit_note
-                td #{applicant.date_added.toLocaleDateString()}   
-                td #{applicant.name_formatted}
-                td #{applicant.tenants}   
-                td #{applicant.seeking.join(", ")}
-                td #{applicant.preferred_location.join(", ")}
-                td #{applicant.bedrooms.join(", ")}
-                td #{applicant.price_range}
-                td #{applicant.story}
-      else
-        h6 No pending listings found.
-      br
-      
-      h5=`Pending Messages (${admin_data.pendingMessageCount})`
-      if admin_data.pendingMessageCount > 0
-        table 
-          tr
-            th(style='width: 150px;') Status
-            th(style='width: 5%;') Date 
-            th(style='width: 11%;') First Name 
-            th(style='width: 11%;') Last Name
-            th(style='width: 11%;') Email
-            th(style='width: 11%l') Recipient Email
-            th Message
-          each message in admin_data.messages
-            if message.status == 'pending'
+                th.column--status Status
+                th(style='width: 60px') Name
+                th(style='width: 60px') Tenants 
+                th(style='width: 60px') Pets
+                th Seeking
+                th Location
+                th Bedrooms
+                th Price Range
+                th Interests
+                th Story
+                th(style='width: 40px') Edit
+              each applicant in admin_data.applicants
+                if applicant.status == 'approved'
+                  tr 
+                    td(style='width: 60px')
+                      form(action='/archive' method='POST')
+                        button(name="archive" type="submit" value=applicant._id) Archive
+                    td #{applicant.name_formatted}
+                    td #{applicant.tenants}   
+                    td #{applicant.pets}
+                    td #{applicant.seeking.join(", ")}
+                    td #{applicant.preferred_location.join(", ")}
+                    td #{applicant.bedrooms.join(", ")}
+                    td #{applicant.price_range}
+                    td #{applicant.interests}
+                    td #{applicant.story}
+                    td
+                      form(action=`/admin/users/${applicant.id}/edit` method='GET')
+                        button(type="submit" class="btn-edit") Edit
+          else 
+            h6 No approved listings found.              
+          br
+        
+        // Approved Messages
+        div.section
+          h5=`Approved Messages (${admin_data.approvedMessageCount})`
+          if admin_data.approvedMessageCount > 0
+            table.table
+              tr
+                th.column--status Status
+                th(style='width: 5%;') Date 
+                th(style='width: 11%;') First Name 
+                th(style='width: 11%;') Last Name
+                th(style='width: 11%;') Email
+                th(style='width: 11%l') Recipient Email
+                th Message
+              each message in admin_data.messages
+                if message.status == 'approved'
+                  tr 
+                    td.status-column
+                      a(title='Approve (Message already approved)' class='disabledLink')
+                        span.material-symbols-rounded check_circle
+                      form(title='Archive' action='/admin/messages/archive'  method='POST')
+                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
+                          span.material-symbols-rounded archive
+                      a(title='Send via Email' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
+                        span.material-symbols-rounded forward_to_inbox
+                    td #{message.date_added.toLocaleDateString()}
+                    td #{message.firstName}
+                    td #{message.lastName}
+                    td #{message.email}
+                    td #{message.applicantEmail}
+                    td #{message.message}  
+          else 
+            h6 No approved messages found.              
+          br
+        
+        // Archived Listings
+        div.section 
+          h5=`Archived Listings (${admin_data.archivedApplicantCount})`
+          if admin_data.archivedApplicantCount > 0
+            table.table
               tr 
-                td.status-column
-                  form(title='Approve' action='/admin/messages/approve' method='POST')
-                      button(name="messageApprove" type="submit" value=message._id)
-                        span.admin-dashboard__approve-btn.material-symbols-rounded check_circle
-                  form(title='Archive' action='/admin/messages/archive'  method='POST')
-                    button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
-                      span.material-symbols-rounded archive
-                  a(title='Send via Email' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hello! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
-                    span.material-symbols-rounded forward_to_inbox
-                td #{message.date_added.toLocaleDateString()}
-                td #{message.firstName}
-                td #{message.lastName}
-                td #{message.email}
-                td #{message.applicantEmail}
-                td #{message.message}             
-      else 
-        h6 No pending messages found.
-      br
-
-      h5=`Approved Listings (${admin_data.approvedApplicantCount})`
-      if admin_data.approvedApplicantCount > 0
-        table
-          tr 
-            th(style='width: 60px') Status
-            th(style='width: 60px') Name
-            th(style='width: 60px') Tenants 
-            th(style='width: 60px') Pets
-            th Seeking
-            th Location
-            th Bedrooms
-            th Price Range
-            th Interests
-            th Story
-            th(style='width: 40px') Edit
-          each applicant in admin_data.applicants
-            if applicant.status == 'approved'
-              tr 
-                td(style='width: 60px')
-                  form(action='/archive' method='POST')
-                    button(name="archive" type="submit" value=applicant._id) Archive
-                td #{applicant.name_formatted}
-                td #{applicant.tenants}   
-                td #{applicant.pets}
-                td #{applicant.seeking.join(", ")}
-                td #{applicant.preferred_location.join(", ")}
-                td #{applicant.bedrooms.join(", ")}
-                td #{applicant.price_range}
-                td #{applicant.interests}
-                td #{applicant.story}
-                td
-                  form(action=`/admin/users/${applicant.id}/edit` method='GET')
-                    button(type="submit" class="btn-edit") Edit
-      else 
-        h6 No approved listings found.              
-      br
-
-      h5=`Approved Messages (${admin_data.approvedMessageCount})`
-      if admin_data.approvedMessageCount > 0
-        table 
-          tr
-            th(style='width: 150px;') Status
-            th(style='width: 5%;') Date 
-            th(style='width: 11%;') First Name 
-            th(style='width: 11%;') Last Name
-            th(style='width: 11%;') Email
-            th(style='width: 11%l') Recipient Email
-            th Message
-          each message in admin_data.messages
-            if message.status == 'approved'
-              tr 
-                td.status-column
-                  a(title='Approve (Message already approved)' class='disabledLink')
-                    span(class="material-symbols-rounded") check_circle
-                  form(title='Archive' action='/admin/messages/archive'  method='POST')
-                    button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
-                      span(class="material-symbols-rounded") archive
-                  a(title='Send via Email' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
-                    span.material-symbols-rounded forward_to_inbox
-                td #{message.date_added.toLocaleDateString()}
-                td #{message.firstName}
-                td #{message.lastName}
-                td #{message.email}
-                td #{message.applicantEmail}
-                td #{message.message}  
-      else 
-        h6 No approved messages found.              
-      br
-      
-      h5=`Archived Listings (${admin_data.archivedApplicantCount})`
-      if admin_data.archivedApplicantCount > 0
-        table 
-          tr 
-            th Status
-            th Name
-            th Tenants 
-            th Pets
-            th Seeking
-            th Location
-            th Bedrooms
-            th Price Range
-            th Interests
-            th Story
-          each applicant in admin_data.applicants
-            if applicant.status == 'archived'
-              tr 
-                td
-                  form(action='/restore' method='POST')
-                    button(name="restore" type="submit" value=applicant._id) Restore
-                td #{applicant.name_formatted}
-                td #{applicant.tenants}   
-                td #{applicant.pets}
-                td #{applicant.seeking.join(", ")}
-                td #{applicant.preferred_location.join(", ")}
-                td #{applicant.bedrooms.join(", ")}
-                td #{applicant.price_range}
-                td #{applicant.interests}
-                td #{applicant.story}
-      else
-        h6 No archived listings found.
-      br
-      br
-      h5=`Archived Messages (${admin_data.archivedMessageCount})`
-      if admin_data.archivedMessageCount > 0   
-        table 
-          tr
-            th(style='width: 7%; max-width: 150px;') Status
-            th(style='width: 5%;') Date 
-            th(style='width: 11%;') First Name 
-            th(style='width: 11%;') Last Name
-            th(style='width: 11%;') Email
-            th Message
-          each message in admin_data.messages
-            if message.status == 'pending'
-              tr 
-                td(title='Approve' style='border: none; display: flex; flex-direction: row; justify-content: space-between; border-right: 1px solid #d2d2d0')
-                  a(href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
-                    span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
-                  form(title='Archive' action='/admin/messages/archive'  method='POST')
-                    button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
-                      span(class="material-symbols-rounded") archive
-                  a(title='Edit' href='#')
-                    span(class="material-symbols-rounded") edit_note
-                td 11/20/2022
-                td #{message.firstName}
-                td #{message.lastName}
-                td #{message.email}
-                td #{message.message}             
-      else 
-        h6 No archived messages found.   
-  else
-    div(class='container-xl')
-      span You must sign in to access this page.
-      br
-      br
-      form(class='login__form' action='/login' method="POST")
-        label(for="username") Username
-        input(class='login__input' type="text" value="admin" name="username" id="username" placeholder="Username" autocorrect="off" autocapitalize="off" autofocus)
-        label(for="password") Password
-        input(class='login__input' type="password" value="BuildHouses2022!" name="password" id="password" placeholder="Password" autocorrect="off" autocapitalize="off")
-        p
-          input(type="submit" class="btn" value="Sign In")
-  a(href="/" class="bottom-nav") ⬅ Home
+                th.column--status Status
+                th Name
+                th Tenants 
+                th Pets
+                th Seeking
+                th Location
+                th Bedrooms
+                th Price Range
+                th Interests
+                th Story
+              each applicant in admin_data.applicants
+                if applicant.status == 'archived'
+                  tr 
+                    td
+                      form(action='/restore' method='POST')
+                        button(name="restore" type="submit" value=applicant._id) Restore
+                    td #{applicant.name_formatted}
+                    td #{applicant.tenants}   
+                    td #{applicant.pets}
+                    td #{applicant.seeking.join(", ")}
+                    td #{applicant.preferred_location.join(", ")}
+                    td #{applicant.bedrooms.join(", ")}
+                    td #{applicant.price_range}
+                    td #{applicant.interests}
+                    td #{applicant.story}
+          else
+            h6 No archived listings found.
+          br
+          br
+        
+        // Archived Messages
+        div.section 
+          h5=`Archived Messages (${admin_data.archivedMessageCount})`
+          if admin_data.archivedMessageCount > 0   
+            table.table
+              tr
+                th.column--status Status
+                th(style='width: 5%;') Date 
+                th(style='width: 11%;') First Name 
+                th(style='width: 11%;') Last Name
+                th(style='width: 11%;') Email
+                th Message
+              each message in admin_data.messages
+                if message.status == 'pending'
+                  tr 
+                    td(title='Approve' style='border: none; display: flex; flex-direction: row; justify-content: space-between; border-right: 1px solid #d2d2d0')
+                      a(href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
+                        span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
+                      form(title='Archive' action='/admin/messages/archive'  method='POST')
+                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
+                          span(class="material-symbols-rounded") archive
+                      a(title='Edit' href='#')
+                        span(class="material-symbols-rounded") edit_note
+                    td 11/20/2022
+                    td #{message.firstName}
+                    td #{message.lastName}
+                    td #{message.email}
+                    td #{message.message}             
+          else 
+            h6 No archived messages found.   
+    else
+      div.login-prompt
+        span You must sign in to access this page.
+        br
+        br
+        form(class='login__form' action='/login' method="POST")
+          label(for="username") Username
+          input(class='login__input' type="text" value="admin" name="username" id="username" placeholder="Username" autocorrect="off" autocapitalize="off" autofocus)
+          label(for="password") Password
+          input(class='login__input' type="password" value="BuildHouses2022!" name="password" id="password" placeholder="Password" autocorrect="off" autocapitalize="off")
+          p
+            input(type="submit" class="btn" value="Sign In")
+    a(href="/" class="bottom-nav") ⬅ Home
