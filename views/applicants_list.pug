@@ -28,25 +28,26 @@ block content
       }
     }
   
-  div(class='row')
-    div(class='header')
-      div(class='logo')
+  div.row
+    div.header
+      div.logo
         img(src='https://housingsolutionsnetwork.org/wp-content/uploads/2019/09/cropped-JCHSN_logo1.png')
-      div(class='menu')
-        div(class='menu-item')
+      div.menu
+        div.menu-item
           a(href='#') Share Our Spaces
-        div(class='menu-item')
+        div.menu-item
           a(href='#') Learn
-        div(class='menu-item')
+        div.menu-item
           a(href='#') Engage
-        div(class='menu-item')
+        div.menu-item
           a(href='#') Build
-        div(class='menu-item')
+        div.menu-item
           a(href='#') About
-        div(class='menu-item')
+        div.menu-item
           a(href='#') Donate
-        div(class='menu-item search-item')
-          a(href='#' class='search-item') ⚲
+        div.menu-item.menu-item--search
+          a(href='#') ⚲
+
   //- div(class='row')
     div(class='hero')
       div(class='hero-left')
@@ -96,31 +97,32 @@ block content
           span
             input(type="submit" class="listing__input submit btn" value="Submit")
 
-    div(class='applicant-grid')
+    div.applicant-grid
       each applicant in applicants_list
         if applicant.status == 'approved'
-          div(class='applicant-card')
+          div.applicant-card
             h1 #{applicant.name_formatted}
-            span(class='applicant-card__title') Tenants: 
+            span Tenants: 
               p #{applicant.tenants} 
-              span(class='applicant-card__title') Pets:  
+              span Pets:  
               p #{applicant.pets_string} 
-            span(class='applicant-card__title') Seeking: 
+            span Seeking: 
               p= applicant.seeking.join(", ")
-            span(class='applicant-card__title') Location: 
+            span Location: 
               p= applicant.preferred_location.join(", ")
-            span(class='applicant-card__title') Bedrooms: 
+            span Bedrooms: 
               p #{applicant.bedrooms.join(", ")}
-            span(class='applicant-card__title') Price range: 
+            span Price range: 
               p #{applicant.price_range}
-            span(class='applicant-card__title') Interests: 
+            span Interests: 
               p #{applicant.interests}
-            span(class='applicant-card__title') Story: 
+            span Story: 
               p #{applicant.story}
-            button(class='connect-btn btn' onclick=`openModal(${JSON.stringify(applicant)})`) Connect With #{applicant.name_formatted}
+            button.applicant-card__connect-btn.btn(onclick=`openModal(${JSON.stringify(applicant)})`) Connect With #{applicant.name_formatted}
       else
         div
           p No applicants found!
+
   div(class='row')      
     div(class='applicant-form')
       div(class='listing__form__guidelines')
