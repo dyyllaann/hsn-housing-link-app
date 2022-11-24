@@ -73,15 +73,11 @@ h1 {
   border-radius: 10px;
 }
 
-/* .admin-dashboard tr:nth-child(even) {
-  background-color: #f2fafa;
+.admin-dashboard__approve-btn {
+  color: #218021
 }
 
-.admin-dashboard tr:nth-child(odd) {
-  background-color: #fbfbfb;
-} */
-
-.admin-dashboard__approve-btn {
+.dashboard .btn .approve {
   color: #218021
 }
 
@@ -423,3 +419,4 @@ tr, td {
   cursor: default;
   color: #aaa;
 }
+

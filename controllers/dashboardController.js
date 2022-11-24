@@ -15,21 +15,19 @@ exports.admin_data = function (req, res) {
 					.exec(callback);
 			},
 			pendingMessageCount: function (callback) {
-				Message
-					.countDocuments({ status: "pending" })
-					.exec(callback);
+				Message.countDocuments({ status: "pending" }).exec(callback);
+			},
+			approvedMessageCount: function (callback) {
+				Message.countDocuments({ status: "approved" }).exec(callback);
 			},
 			archivedMessageCount: function (callback) {
-				Message
-					.countDocuments({ status: "pending" })
-					.exec(callback);
+				Message.countDocuments({ status: "pending" }).exec(callback);
 			},
 			applicants: function (callback) {
-				Applicant
-					.find(
-						{},
-						"_id date_added email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
-					)
+				Applicant.find(
+					{},
+					"_id date_added email name firstName lastName preferredName tenants pets_string seeking preferred_location bedrooms price interests story status"
+				)
 					.sort({ date: -1 })
 					.exec(callback);
 			},
@@ -39,19 +37,13 @@ exports.admin_data = function (req, res) {
 			// 		.exec(callback);
 			// },
 			pendingApplicantCount: function (callback) {
-				Applicant
-					.countDocuments({ status: "pending" })
-					.exec(callback);
+				Applicant.countDocuments({ status: "pending" }).exec(callback);
 			},
 			approvedApplicantCount: function (callback) {
-				Applicant
-					.countDocuments({ status: "approved" })
-					.exec(callback);
+				Applicant.countDocuments({ status: "approved" }).exec(callback);
 			},
 			archivedApplicantCount: function (callback) {
-				Applicant
-					.countDocuments({ status: "archived" })
-					.exec(callback);
+				Applicant.countDocuments({ status: "archived" }).exec(callback);
 			},
 		},
 		function (err, admin_data) {
@@ -155,7 +147,7 @@ exports.restore = function (req, res, next) {
 // Message approve POST
 exports.messageApprove = function (req, res, next) {
 	Message.findByIdAndUpdate(
-		req.body.approve,
+		req.body.messageApprove,
 		{ status: "approved" },
 		function (err, docs) {
 			if (err) {
