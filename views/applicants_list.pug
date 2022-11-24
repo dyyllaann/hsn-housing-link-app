@@ -95,7 +95,7 @@ block content
             textarea(class='listing__input' rows="4" maxlength="250" type="text" name="message" id="message" placeholder="Your message" autocorrect="on" autocapitalize="on")
           
           span
-            input(type="submit" class="listing__input submit btn" value="Submit")
+            input(type="submit" class="btn--submit btn" value="Submit")
 
     div.applicant-grid
       each applicant in applicants_list
@@ -123,10 +123,10 @@ block content
         div
           p No applicants found!
 
-  div(class='row')      
-    div(class='applicant-form')
-      div(class='listing__form__guidelines')
-        h1(class='listing__form__title') Post a Listing
+  div.row      
+    div.applicant-form
+      div.applicant-form__guidelines
+        h1 Post a Listing
         p Our new Housing Link project is an effort by HSN to connect home seekers with home providers. Folks seeking housing will be able to post a simple description of what they’re looking for, and folks with housing space to share will be able to review the Link to find a community member who could live in their space. Housing Solutions Network does not screen either the home seekers or home providers, and we do NOT recommend sharing sensitive, or information about legally protected classes via the Housing Link, or prior to meeting with each other. 
         p Housing Link profiles will be prioritized by the following criteria:
         p - People who work for employers or small business owners who serve Jefferson County
@@ -240,4 +240,4 @@ block content
           label(for="disclaimer") I understand and accept.
         
         p
-          input(type="submit" class="listing__input submit btn" value="Submit")
+          input(type="submit" class="listing__input btn btn--submit" value="Submit")
