@@ -175,3 +175,18 @@ exports.messageArchive = function (req, res, next) {
 		}
 	)
 }
+
+// Message delete POST
+exports.messageDelete = function(req, res, next) {
+	Message.deleteOne(
+		{ _id: req.body.delete },
+		function (err, docs) {
+			if (err) {
+				console.log(err); 
+			} else {
+				console.log("Deleted Message : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+}

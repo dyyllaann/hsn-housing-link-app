@@ -110,11 +110,15 @@ app.get("/admin", dashboard_controller.admin_data);
 app.post("/approve", dashboard_controller.approve);
 app.post("/archive", dashboard_controller.archive);
 app.post("/restore", dashboard_controller.restore);
+
+/* Admin Routes -> User Routes */
+app.post("/admin/users/restore", dashboard_controller.restore);
 app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
 app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
 
-/* pending */
+/* Admin Routes -> Message Routes */
 app.post("/admin/messages/approve", dashboard_controller.messageApprove);
 app.post("/admin/messages/archive", dashboard_controller.messageArchive);
+app.post("/admin/messages/delete", dashboard_controller.messageDelete);
 
 module.exports = app;
