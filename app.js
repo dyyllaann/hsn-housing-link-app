@@ -22,6 +22,7 @@ const Message = require('./models/message');
 
 /* Controllers */
 const applicant_controller = require('./controllers/applicantController');
+const message_controller = require('./controllers/messageController');
 const dashboard_controller = require('./controllers/dashboardController');
 const login_controller = require('./controllers/loginController');
 
@@ -112,14 +113,17 @@ app.post("/archive", dashboard_controller.archive);
 app.post("/restore", dashboard_controller.restore);
 
 /* Admin Routes -> User Routes */
-app.post("/admin/users/restore", dashboard_controller.restore);
+// app.post("/admin/users/restore", dashboard_controller.restore);
 app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
 app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
-app.post("/admin/users/delete", applicant_controller.applicantDelete);
+app.post("/admin/users/archive", applicant_controller.applicant_archive);
+app.post("/admin/users/restore", applicant_controller.applicant_restore);
+app.post("/admin/users/delete", applicant_controller.applicant_delete);
 
 /* Admin Routes -> Message Routes */
-app.post("/admin/messages/approve", dashboard_controller.messageApprove);
-app.post("/admin/messages/archive", dashboard_controller.messageArchive);
-app.post("/admin/messages/delete", dashboard_controller.messageDelete);
+app.post("/admin/messages/approve", message_controller.message_approve);
+app.post("/admin/messages/archive", message_controller.message_archive);
+app.post("/admin/messages/delete", message_controller.message_delete);
+app.post("/admin/messages/restore", message_controller.message_restore);
 
 module.exports = app;

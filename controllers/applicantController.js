@@ -59,8 +59,40 @@ exports.connect = function (req, res, next) {
 	});
 };
 
+// Applicant archive POST
+exports.applicant_archive = function (req, res, next) {
+	Applicant.findByIdAndUpdate(
+		req.body.archive,
+		{ status: "archived" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Archived User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+}
+
+// Applicant restore POST
+exports.applicant_restore = function (req, res, next) {
+	Applicant.findByIdAndUpdate(
+		req.body.restore,
+		{ status: "approved" },
+		function (err, docs) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log("Restored User : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+};
+
 // Applicant delete POST
-exports.applicantDelete = function(req, res, next) {
+exports.applicant_delete = function(req, res, next) {
 	Applicant.deleteOne(
 		{ _id: req.body.delete },
 		function (err, docs) {
