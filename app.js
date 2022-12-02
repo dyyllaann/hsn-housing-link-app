@@ -115,6 +115,7 @@ app.post("/restore", dashboard_controller.restore);
 app.post("/admin/users/restore", dashboard_controller.restore);
 app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
 app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
+app.post("/admin/users/delete", applicant_controller.applicantDelete);
 
 /* Admin Routes -> Message Routes */
 app.post("/admin/messages/approve", dashboard_controller.messageApprove);

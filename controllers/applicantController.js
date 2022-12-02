@@ -58,3 +58,18 @@ exports.connect = function (req, res, next) {
 		res.render("message_confirmation");
 	});
 };
+
+// Applicant delete POST
+exports.applicantDelete = function(req, res, next) {
+	Applicant.deleteOne(
+		{ _id: req.body.delete },
+		function (err, docs) {
+			if (err) {
+				console.log(err); 
+			} else {
+				console.log("Deleted Applicant : ", docs);
+			}
+			res.redirect("/admin");
+		}
+	)
+}

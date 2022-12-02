@@ -234,8 +234,11 @@ block content
                 if message.status == 'archived'
                   tr 
                     td(style='border: none; display: flex; flex-direction: row; justify-content: space-between;')
-                      a(title='Restore' href='#')
-                        span(class="admin-dashboard__approve-btn material-symbols-rounded") settings_backup_restore
+                      //- a(title='Restore' href='/admin/messages/approve')
+                        //- span.admin-dashboard__approve-btn.material-symbols-rounded check_circle
+                      form(title='Approve' action='/admin/messages/approve' method='POST')
+                        button(class="dashboard-btn" name="messageApprove" type="submit" value=message._id)
+                          span(class="admin-dashboard__approve-btn material-symbols-rounded") settings_backup_restore
                       form(title='Delete' action='/admin/messages/delete'  method='POST')
                         button(class="admin-dashboard__delete-btn" name="delete" type="submit" value=message._id style="padding: 0; border: none; background: none;")
                           span(class="material-symbols-rounded") delete
