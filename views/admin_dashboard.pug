@@ -26,19 +26,14 @@ block content
               each applicant in admin_data.applicants
                 if applicant.status == 'pending'
                   tr 
-                    //- td
-                      form(action='/approve' method='POST')
-                        button(name="approve" type="submit" value=applicant._id style="background-color: #c9e4ca; width: 100%; margin-bottom: 5px;") Approve
-                      form(action='/archive' method='POST')
-                        button(name="archive" type="submit" value=applicant._id style="background-color: #ff7477; width: 100%;") Archive
                     td.status-column
                       form(action='/approve' method='POST')
                         button(name="approve" type="submit" value=applicant._id)
                           span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
-                      form(title='Archive' action='#'  method='POST')
+                      form(title='Archive' action='/admin/users/archive'  method='POST')
                         button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
                           span(class="material-symbols-rounded") archive
-                      form(title='Edit' action=`#` method='GET')
+                      form(title='Edit' action=`/admin/users/${applicant.id}/edit` method='GET')
                         button(type="submit" class="btn-edit")
                           span(class="material-symbols-rounded") edit_note
                     td #{applicant.date_added.toLocaleDateString()}   
