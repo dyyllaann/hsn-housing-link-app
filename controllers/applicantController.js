@@ -105,3 +105,41 @@ exports.applicant_delete = function(req, res, next) {
 		}
 	)
 }
+
+
+// Applicant Edit GET
+exports.applicant_edit_get = function (req, res, next) {
+	async.parallel(
+		{
+			applicant: function (callback) {
+				Applicant.findById(req.params.id).exec(callback);
+			},
+		},
+		function (err, results) {
+			if (err) {
+				return next(err);
+			}
+			res.render("applicant_form", {
+				title: "Applicant Form",
+				applicant: results.applicant,
+			});
+		}
+	);
+}
+
+// Applicant Edit POST
+exports.applicant_edit_post = function (req, res) {
+	Applicant.findByIdAndUpdate(req.params.id, { 
+		_id: req.params.id, 
+		interests: req.body.interests, 
+		story: req.body.story 
+	}, function(err, docs) {
+		if (err) {
+        console.log(err)
+    }
+    else {
+        console.log("Updated User.");
+				res.redirect('/admin');
+    }
+	})
+}

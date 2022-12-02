@@ -107,13 +107,15 @@ app.post("/connect", applicant_controller.connect);
 
 /* Admin Routes */
 app.get("/admin", dashboard_controller.admin_data);
-app.post("/approve", dashboard_controller.approve);
-app.post("/archive", dashboard_controller.archive);
-app.post("/restore", dashboard_controller.restore);
+// app.post("/approve", dashboard_controller.approve);
+// app.post("/archive", dashboard_controller.archive);
+// app.post("/restore", dashboard_controller.restore);
 
 /* Admin Routes -> User Routes */
-app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
-app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
+// app.get("/admin/users/:id/edit", dashboard_controller.applicant_edit_get);
+// app.post("/admin/users/:id/post", dashboard_controller.applicant_edit_post);
+app.get("/admin/users/:id/edit", applicant_controller.applicant_edit_get);
+app.post("/admin/users/:id/post", applicant_controller.applicant_edit_post);
 app.post("/admin/users/archive", applicant_controller.applicant_archive);
 app.post("/admin/users/restore", applicant_controller.applicant_restore);
 app.post("/admin/users/delete", applicant_controller.applicant_delete);
