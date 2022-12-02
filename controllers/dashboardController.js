@@ -21,7 +21,7 @@ exports.admin_data = function (req, res) {
 				Message.countDocuments({ status: "approved" }).exec(callback);
 			},
 			archivedMessageCount: function (callback) {
-				Message.countDocuments({ status: "pending" }).exec(callback);
+				Message.countDocuments({ status: "archived" }).exec(callback);
 			},
 			applicants: function (callback) {
 				Applicant.find(

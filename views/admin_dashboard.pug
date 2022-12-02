@@ -231,7 +231,7 @@ block content
                 th(style='width: 11%;') Email
                 th Message
               each message in admin_data.messages
-                if message.status == 'pending'
+                if message.status == 'archived'
                   tr 
                     td(style='border: none; display: flex; flex-direction: row; justify-content: space-between;')
                       a(title='Restore' href='#')
