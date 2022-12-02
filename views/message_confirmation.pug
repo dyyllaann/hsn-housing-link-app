@@ -6,7 +6,7 @@ block content
 
     div.confirmation-page
       script.
-        var countDownDate = new Date().getTime() + 6000;
+        var countDownDate = new Date().getTime() + 4000;
 
         var x = setInterval(function() {
           var now = new Date().getTime();
@@ -15,15 +15,14 @@ block content
             
           if (distance < 1) {
             document.getElementById("seconds").innerHTML = "0s ";
-            window.location.replace("http://www.housingsolutionsnetwork.org");
+            window.location.replace("/");
             clearInterval(x);
           } else {
             document.getElementById("seconds").innerHTML = seconds + "s ";
           }
         }, 1000);
-        
-      h1 Your listing has been submitted. 
-      h2 HSN staff will review your listing in 3-5 business days.
+
+      h1 Your message has been submitted!
       div(id="redirect-message")
-        span This page will redirect to the home page in 
-        span#seconds 5s
+        span This page will redirect to the Housing Link page in 
+        span#seconds 3s
