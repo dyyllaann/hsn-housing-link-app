@@ -109,9 +109,19 @@ block content
               each applicant in admin_data.applicants
                 if applicant.status == 'approved'
                   tr 
-                    td(style='width: 60px')
-                      form(action='/archive' method='POST')
-                        button(name="archive" type="submit" value=applicant._id) Archive
+                    //- td(style='width: 60px')
+                    //-   form(action='/archive' method='POST')
+                    //-     button(name="archive" type="submit" value=applicant._id) Archive
+                    td.status-column
+                      form(action='/approve' method='POST')
+                        button(name="approve" type="submit" value=applicant._id)
+                          span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
+                      form(title='Archive' action='#'  method='POST')
+                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
+                          span(class="material-symbols-rounded") archive
+                      form(title='Edit' action=`#` method='GET')
+                        button(type="submit" class="btn-edit")
+                          span(class="material-symbols-rounded") edit_note
                     td #{applicant.name_formatted}
                     td #{applicant.tenants}   
                     td #{applicant.pets}
@@ -181,9 +191,19 @@ block content
               each applicant in admin_data.applicants
                 if applicant.status == 'archived'
                   tr 
-                    td
-                      form(action='/restore' method='POST')
-                        button(name="restore" type="submit" value=applicant._id) Restore
+                    //- td
+                    //-   form(action='/restore' method='POST')
+                    //-     button(name="restore" type="submit" value=applicant._id) Restore
+                    td.status-column
+                      form(title='Restore' action='/admin/applicant/restore' method='POST')
+                        button(name="approve" type="submit" value=applicant._id)
+                          span(class="admin-dashboard__approve-btn material-symbols-rounded") settings_backup_restore
+                      form(title='Delete' action='/admin/applicant/delete'  method='POST')
+                        button(class="admin-dashboard__delete-btn" name="delete" type="submit" value=applicant._id style="padding: 0; border: none; background: none;")
+                          span(class="material-symbols-rounded") delete
+                      form(title='Edit' action=`#` method='GET')
+                        button(type="submit" class="btn-edit")
+                          span(class="material-symbols-rounded") edit_note
                     td #{applicant.name_formatted}
                     td #{applicant.tenants}   
                     td #{applicant.pets}
@@ -213,14 +233,14 @@ block content
               each message in admin_data.messages
                 if message.status == 'pending'
                   tr 
-                    td(title='Approve' style='border: none; display: flex; flex-direction: row; justify-content: space-between; border-right: 1px solid #d2d2d0')
-                      a(href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
-                        span(class="admin-dashboard__approve-btn material-symbols-rounded") check_circle
-                      form(title='Archive' action='/admin/messages/archive'  method='POST')
-                        button(class="admin-dashboard__archive-btn" name="archive" type="submit" value=message._id style="padding: 0; border: none; background: none;")
-                          span(class="material-symbols-rounded") archive
-                      a(title='Edit' href='#')
-                        span(class="material-symbols-rounded") edit_note
+                    td(style='border: none; display: flex; flex-direction: row; justify-content: space-between;')
+                      a(title='Restore' href='#')
+                        span(class="admin-dashboard__approve-btn material-symbols-rounded") settings_backup_restore
+                      form(title='Delete' action='/admin/message/delete'  method='POST')
+                        button(class="admin-dashboard__delete-btn" name="delete" type="submit" value=message._id style="padding: 0; border: none; background: none;")
+                          span(class="material-symbols-rounded") delete
+                      a(title='Send via Email' href=`mailto:${message.applicantEmail}?subject=Housing Link: Your profile has a new inquiry!&body=Hi <message.applicantName>! %0D%0A%0D%0A ${message.firstName} ${message.lastName} would like to reach out to you regarding a rental opportunity. If you are still looking for a place and are interested to learn more about this opportunity, please contact ${message.firstName}. %0D%0A%0D%0A ${message.firstName} ${message.lastName}: ${message.email} %0D%0A%0D%0A As a kind reminder, we do not vet either the renters or the landlords at this time. It will be up to the two of you to communicate any housing needs or requirements and find a mutually beneficial agreement for all parties. %0D%0A%0D%0A If this connection is successful, we’d love to hear about it! Please email housingsolutions@jcfgives.org with the details of your connection. %0D%0A%0D%0A If you are no longer interested in using the Housing Link or have found housing another way, please also let us know. %0D%0A%0D%0A We wish you the best of luck!` target='_blank')
+                        span.material-symbols-rounded forward_to_inbox
                     td 11/20/2022
                     td #{message.firstName}
                     td #{message.lastName}

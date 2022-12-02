@@ -238,12 +238,12 @@ td {
   color: #218021
 }
 
-.admin-dashboard__remove-btn {
+.admin-dashboard__delete-btn {
   color: #961a1a
 }
 
 .admin-dashboard__archive-btn {
-  color: #8d8d8d
+  color: #111;
 }
 
 th {
