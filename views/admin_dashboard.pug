@@ -14,15 +14,17 @@ block content
           if admin_data.pendingApplicantCount > 0
             table.table
               tr
-                th(style='width: 150px;') Status
-                th(style='width: 5%') Date
-                th(style='width: 5%') Name
-                th(style='width: 5%') Tenants 
-                th(style='width: 5%') Seeking
-                th(style='width: 5%') Location
-                th(style="width: 5%") Bedrooms
-                th(style='width: 5%') Price Range
-                th(style='width: 300px;') Story
+                th.column--status Status
+                th Date
+                th Name
+                th Tenants 
+                th Pets 
+                th Seeking
+                th Location
+                th Bedrooms
+                th Price
+                th Interests
+                th(style='width: 450px;') Story
               each applicant in admin_data.applicants
                 if applicant.status == 'pending'
                   tr 
@@ -39,10 +41,12 @@ block content
                     td #{applicant.date_added.toLocaleDateString()}   
                     td #{applicant.name_formatted}
                     td #{applicant.tenants}   
+                    td #{applicant.pets}   
                     td #{applicant.seeking.join(", ")}
                     td #{applicant.preferred_location.join(", ")}
                     td #{applicant.bedrooms.join(", ")}
                     td #{applicant.price_range}
+                    td #{applicant.interests}
                     td #{applicant.story}
           else
             h6 No pending listings found.
@@ -55,12 +59,12 @@ block content
             table.table
               tr
                 th.column--status Status
-                th(style='width: 5%;') Date 
-                th(style='width: 11%;') First Name 
-                th(style='width: 11%;') Last Name
-                th(style='width: 11%;') Email
-                th(style='width: 11%;') Recipient Email
-                th Message
+                th Date 
+                th First Name 
+                th Last Name
+                th Email
+                th Recipient Email
+                th(style='width: 450px;') Message
               each message in admin_data.messages
                 if message.status == 'pending'
                   tr 
@@ -91,15 +95,16 @@ block content
             table.table
               tr 
                 th.column--status Status
-                th(style='width: 60px') Name
-                th(style='width: 60px') Tenants 
-                th(style='width: 60px') Pets
+                th Date
+                th Name
+                th Tenants 
+                th Pets
                 th Seeking
                 th Location
                 th Bedrooms
-                th Price Range
+                th Price
                 th Interests
-                th Story
+                th(style='width: 450px;') Story
               each applicant in admin_data.applicants
                 if applicant.status == 'approved'
                   tr 
@@ -112,6 +117,7 @@ block content
                       form(title='Edit' action=`/admin/users/${applicant.id}/edit` method='GET')
                         button(type="submit" class="btn-edit")
                           span(class="material-symbols-rounded") edit_note
+                    td #{applicant.date_added.toLocaleDateString()} 
                     td #{applicant.name_formatted}
                     td #{applicant.tenants}   
                     td #{applicant.pets}
@@ -132,12 +138,12 @@ block content
             table.table
               tr
                 th.column--status Status
-                th(style='width: 5%;') Date 
-                th(style='width: 11%;') First Name 
-                th(style='width: 11%;') Last Name
-                th(style='width: 11%;') Email
-                th(style='width: 11%l') Recipient Email
-                th Message
+                th Date 
+                th First Name 
+                th Last Name
+                th Email
+                th Recipient Email
+                th(style='width: 450px;') Message
               each message in admin_data.messages
                 if message.status == 'approved'
                   tr 
@@ -166,15 +172,16 @@ block content
             table.table
               tr 
                 th.column--status Status
+                th Date
                 th Name
                 th Tenants 
                 th Pets
                 th Seeking
                 th Location
                 th Bedrooms
-                th Price Range
+                th Price
                 th Interests
-                th Story
+                th(style='width: 450px;') Story
               each applicant in admin_data.applicants
                 if applicant.status == 'archived'
                   tr
@@ -187,6 +194,7 @@ block content
                           span(class="material-symbols-rounded") delete
                       a.disabledLink(title='Edit (disabled)')
                         span.material-symbols-rounded edit_note
+                    td #{applicant.date_added.toLocaleDateString()} 
                     td #{applicant.name_formatted}
                     td #{applicant.tenants}   
                     td #{applicant.pets}
@@ -208,11 +216,11 @@ block content
             table.table
               tr
                 th.column--status Status
-                th(style='width: 5%;') Date 
-                th(style='width: 11%;') First Name 
-                th(style='width: 11%;') Last Name
-                th(style='width: 11%;') Email
-                th Message
+                th Date 
+                th First Name 
+                th Last Name
+                th Email
+                th(style='width: 450px;') Message
               each message in admin_data.messages
                 if message.status == 'archived'
                   tr 

@@ -106,7 +106,7 @@ app.post("/submit-listing", applicant_controller.submit_listing);
 app.post("/connect", applicant_controller.connect);
 
 /* Admin Routes */
-app.get("/admin", dashboard_controller.admin_data);
+app.get("/admin", dashboard_controller.admin_data, message_controller.message_data);
 // app.post("/approve", dashboard_controller.approve);
 // app.post("/archive", dashboard_controller.archive);
 // app.post("/restore", dashboard_controller.restore);

@@ -3,7 +3,7 @@ var Message = require("../models/message");
 var async = require("async");
 
 // Display list of all admin data (messages and applicants).
-exports.admin_data = function (req, res) {
+exports.message_data = function (req, res) {
 	async.parallel(
 		{
 			messages: function (callback) {
@@ -23,19 +23,14 @@ exports.admin_data = function (req, res) {
 			archivedMessageCount: function (callback) {
 				Message.countDocuments({ status: "archived" }).exec(callback);
 			},
-			// applicantEmail: function (callback) {
-			// 	Applicant
-			// 		.findById(_id, 'email')
-			// 		.exec(callback);
-			// },
 		},
-		function (err, admin_data) {
+		function (err, message_data) {
 			if (err) {
 				return next(err);
 			}
 			res.render("admin_dashboard", {
-				title: "Admin Dashboard",
-				admin_data,
+				// title: "Admin Dashboard",
+				message_data,
 				user: req.user,
 			});
 		}

@@ -212,6 +212,7 @@ input[type=number] {
   border-radius: 8px;
   -moz-border-radius: 8px;
   border: 1px solid #e0e0d0;
+  background-color: #fff;
 }
 
 .dashboard .section .table tr,
@@ -227,11 +228,12 @@ input[type=number] {
   width: 150px;
 }
 
-.admin-dashboard table,
+.admin-dashboard 
+table,
 th,
 td {
   overflow: scroll;
-  border: 1px solid #bbb;
+  border: none;
 }
 
 .admin-dashboard tr {
