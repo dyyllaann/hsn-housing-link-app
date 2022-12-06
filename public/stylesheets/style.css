@@ -315,6 +315,15 @@ td {
   transform: rotate(45deg);
 }
 
+@media screen and (max-width: 1000px) {
+  .header .logo {
+    margin: 0 auto;
+  }
+  .header .menu {
+    display: none;
+  }
+}
+
 /* MODAL */
 #modal {
   display: none;
