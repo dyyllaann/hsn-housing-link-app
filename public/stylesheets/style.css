@@ -119,6 +119,10 @@ input[type=number] {
   margin: auto 0 0 0;
 }
 
+.applicant-card div > span {
+  margin-right: 1.5em;
+}
+
 /* APPLICANT FORM */
 .listing__form {
   display: inline-block;

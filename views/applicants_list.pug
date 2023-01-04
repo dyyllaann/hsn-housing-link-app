@@ -101,23 +101,20 @@ block content
       each applicant in applicants_list
         if applicant.status == 'approved'
           div.applicant-card
+            mixin gridData(key,value)
+              span= key
+                p= value
             h1 #{applicant.name_formatted}
-            span Tenants: 
-              p #{applicant.tenants} 
-              span Pets:  
-              p #{applicant.pets_string} 
-            span Seeking: 
-              p= applicant.seeking.join(", ")
-            span Location: 
-              p= applicant.preferred_location.join(", ")
-            span Bedrooms: 
-              p #{applicant.bedrooms.join(", ")}
-            span Price range: 
-              p #{applicant.price_range}
-            span Interests: 
-              p #{applicant.interests}
-            span Story: 
-              p #{applicant.story}
+            div
+              +gridData('Tenants: ', applicant.tenants) 
+              +gridData('Pets: ', applicant.pets_string)
+            +gridData('Location: ', applicant.preferred_location.join(", "))
+            +gridData('Seeking: ', applicant.seeking.join(", "))
+            +gridData('Bedrooms: ', applicant.bedrooms.join(", "))
+            +gridData('Price range: ', applicant.price_range)
+            +gridData('Interests: ', applicant.interests)
+            +gridData('Story: ', applicant.story)
+
             button.applicant-card__connect-btn.btn(onclick=`openModal(${JSON.stringify(applicant)})`) Connect With #{applicant.name_formatted}
       else
         div
