@@ -7,9 +7,9 @@ A Node.js/Express application for managing housing listings and applicant connec
 - Applicant and message management
 - Admin dashboard
 
+## Setup
 NOTE! When cloning this project, a new MongoDB URI must be implemented! 
 
-## Setup
 1. Clone the repo:
    ```
    git clone https://github.com/dyyllaann/hsn-housing-link-app
