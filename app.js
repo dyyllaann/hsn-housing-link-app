@@ -9,6 +9,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 /* Unused dependencies */
+require('dotenv').config();
 // var createError = require('http-errors');
 // var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
@@ -30,8 +31,7 @@ const login_controller = require('./controllers/loginController');
 var indexRouter = require('./routes/index');
 
 /* Mongoose connection */
-var mongoDB =
-  "mongodb+srv://admin:hsn-admin@cluster0.qnb2t.mongodb.net/housing_link?retryWrites=true&w=majority";
+var mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true})
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
